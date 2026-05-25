@@ -41,7 +41,7 @@ The quality assurance skills—systematic debugging, verification before complet
 
 ## Scope and Intended Use
 
-my-powers is designed for **one-shot development**: take a system from blank slate to working implementation in a single focused effort. The workflow is linear and human-gated—each phase produces artifacts that a person reviews before the next phase begins. This is intentional. The checkpoints exist so that course corrections happen at the design level, not after thousands of lines have been written.
+The core value of my-powers lies in **fine-grained phase decomposition** and **rich intermediate artifacts**: the full path from requirements to implementation is broken into independently confirmable stages, each producing structured outputs—specs, task files, plan documents, demos, and implementation reports. These artifacts are not only inputs to the next phase; they give users a window to observe, evaluate, and learn from the implementation at any point in the process. The workflow is linear and human-gated—each phase produces artifacts that a person reviews before the next phase begins. The checkpoints exist so that course corrections happen at the design level, not after thousands of lines have been written.
 
 **What my-powers does not do:**
 
@@ -95,6 +95,15 @@ Quality assurance skills are independent and trigger at any time:
 systematic-debugging          ← any bug, test failure, unexpected behavior
 verification-before-completion ← before any completion claim or commit
 ```
+
+### Context Length Management
+
+Large projects can accumulate enough context to approach the conversation window limit. Start a fresh conversation at these two natural breakpoints:
+
+- **After all specs are complete, before entering `splitting-specs`**: Specs have been fully discussed; subsequent phases only need to read documents, not conversation history.
+- **After all plans are complete, before entering `subagent-implementation`**: Plan documents are self-contained; implementation is driven by documents, not conversation history.
+
+When starting the new conversation, provide the original requirements document plus all documents produced so far under `docs/`.
 
 ---
 
@@ -209,6 +218,12 @@ my-powers/
 - `systematic-debugging` — 4-phase root cause process before any fix attempt
 - `verification-before-completion` — evidence before completion claims, always
 - `receiving-code-review` — technical evaluation of review feedback; verify before implementing, push back when wrong
+
+---
+
+## Feedback
+
+If you encounter unexpected behavior while using my-powers, feel free to open a discussion in the [Discussions tab](https://github.com/Nyanifold/my-powers/discussions).
 
 ---
 
