@@ -21,6 +21,17 @@ cp -r using-my-powers ~/.claude/skills/using-my-powers # 中文版本
 cp -r using-my-powers-en ~/.claude/skills/using-my-powers
 ```
 
+```bash
+# Codex 示例：
+# 克隆或复制到技能目录
+mkdir -p ~/.agents/skills/using-my-powers
+cp -r using-my-powers ~/.agents/skills/using-my-powers # 中文版本
+# 如需使用英文版本
+cp -r using-my-powers-en ~/.agents/skills/using-my-powers
+```
+
+若仅希望为一个项目安装本 skill，将上述命令中的 `~` 替换为项目路径即可。
+
 然后在 `AGENTS.md` / `CLAUDE.md` 中引用，或启动会话后执行：
 
 ```
