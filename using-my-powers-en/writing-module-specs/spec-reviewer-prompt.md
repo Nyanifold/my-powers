@@ -2,7 +2,7 @@
 
 Use this template when dispatching a review subagent after a single module spec is written and the coordinator's self-check passes.
 
-**Purpose:** Independently verify the spec is complete, consistent, and ready to enter the planning phase; also check enhanced feature dependency ordering.
+**Purpose:** Independently verify the spec is complete, consistent, and ready to enter the planning phase; also check update phase dependency ordering.
 
 **Dispatch timing:** `writing-module-specs` Step 6, after each module's spec is written, review individually.
 
@@ -27,11 +27,11 @@ Agent (general-purpose):
     | Dimension | Checkpoint |
     |-----------|------------|
     | Completeness | Are there unfilled placeholders (TBD, TODO (not intentionally marked), empty sections, `<to fill>` etc.)? |
-    | Internal consistency | Do functional requirements match interface definitions? Is every feature in "Functional Requirements" assigned to either "Progressive Implementation → Core Features" or "Enhanced Features" with none left out? |
+    | Internal consistency | Do functional requirements match interface definitions? Is every feature in "Functional Requirements" assigned to a phase in "Iteration Plan" with none left out? |
     | Clarity | Are there ambiguous requirements (same sentence interpretable two ways)? |
     | Responsibility scope | Is all spec content within the module's responsibility scope as defined in modules.md? |
     | YAGNI | Is there over-engineering or hypothetical functionality not supported by requirements? |
-    | **Enhanced feature ordering** | In the "Progressive Implementation → Enhanced Features" list, are interdependent enhanced features ordered by implementation sequence? (Dependencies must come before the features that depend on them) |
+    | **Update phase ordering** | In the "Iteration Plan → Update N" phases, are interdependent phases ordered by implementation sequence? (Dependencies must come before the phases that depend on them) |
 
     ## Calibration Principles
 

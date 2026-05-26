@@ -19,10 +19,11 @@ Agent (general-purpose):
 
     **Corresponding spec files (read to verify coverage):**
     - Original spec: `docs/specs/YYYY-MM-DD-<module>-spec.md`
-    - Core version scope: `docs/specs/YYYY-MM-DD-<module>-spec-core.md`
-    - Enhanced version scope: `docs/specs/YYYY-MM-DD-<module>-spec-enhanced.md` (if applicable)
+    - Core phase scope: `docs/specs/YYYY-MM-DD-<module>-spec-core.md`
+    - Update phase files involved in this iteration (listed by coordinator, if applicable):
+      - `docs/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`
 
-    **Target version for this iteration (provided by coordinator):** Core | Enhanced (target features: <feature list>)
+    **Target phases for this iteration (provided by coordinator):** Core | Update N-* (target phase list: <phase list>)
 
     ## Review Dimensions
 

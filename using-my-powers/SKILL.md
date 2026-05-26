@@ -22,7 +22,7 @@ module-brainstorming        ← 与用户讨论系统分解，定义板块边界
          ↓ 用户确认板块说明文档
 writing-module-specs        ← 串行对每个叶子板块做头脑风暴，编写 spec
          ↓ 用户确认所有 spec
-splitting-specs             ← 子智能体并行拆分每个板块的基础版/增强版 spec
+splitting-specs             ← 子智能体并行为每个板块拆分各迭代阶段 spec（spec-core + spec-update-N-*）
          ↓
 writing-task-files          ← 串行为每个板块编写任务文件（阶段、成果、演示）
          ↓ 用户确认所有任务文件
@@ -41,9 +41,10 @@ finishing-a-module          ← 验证、收尾、合并或 PR
 docs/
 ├── YYYY-MM-DD-modules.md                             # 板块说明文档
 ├── specs/
-│   ├── YYYY-MM-DD-<module>-spec.md                  # 原始 spec（主智能体）
-│   ├── YYYY-MM-DD-<module>-spec-core.md             # 基础版差异（子智能体）
-│   └── YYYY-MM-DD-<module>-spec-enhanced.md         # 增强版差异（子智能体）
+│   ├── YYYY-MM-DD-<module>-spec.md                       # 原始 spec（主智能体）
+│   ├── YYYY-MM-DD-<module>-spec-core.md                  # Core 阶段范围（子智能体）
+│   ├── YYYY-MM-DD-<module>-spec-update-1-<feature>.md    # Update 1 增量（子智能体）
+│   └── YYYY-MM-DD-<module>-spec-update-N-<feature>.md    # Update N 增量（子智能体）
 ├── tasks/
 │   └── YYYY-MM-DD-<module>-tasks.md                 # 任务文件（主智能体）
 ├── plans/
@@ -58,7 +59,7 @@ docs/
 ## 核心原则
 
 - **板块边界优先**：先把边界定清楚，板块内部变化不影响其他板块
-- **渐进式实现**：每个板块区分基础功能与增强功能，基础版可独立运行
+- **渐进式实现**：每个板块的迭代计划从 Core（最小可运行集）出发，按需叠加 Update 阶段，各阶段不破坏已有接口
 - **子智能体隔离**：每个子智能体只获得完成自身任务所需的精确上下文，不继承会话历史
 - **验证先于声明**：没有运行过验证命令，不得宣称任何阶段完成
 - **连续执行**：实现阶段除非遇到无法解决的 BLOCKED，不中途询问用户是否继续

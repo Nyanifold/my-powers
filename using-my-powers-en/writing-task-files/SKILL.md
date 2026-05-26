@@ -13,72 +13,64 @@ Write task files for each leaf module, mapping spec features to independently de
 Do not call writing-plans until the user confirms all task files. Every stage must have a runnable demo plan.
 </HARD-GATE>
 
-## Step 0: Confirm Current Target Version
+## Step 0: Confirm Current Target Phase Scope
 
-**Before reading any spec or dividing any stages, first confirm which version to build.**
+**Before reading any spec or dividing any stages, first confirm which iteration phases to implement this time.**
 
-Determine in the following order:
+### ① Has the user explicitly declared a target phase?
 
-**① Has the user explicitly declared a target version?**
-- If the user says "do the enhanced version", "implement all features", "include enhanced feature X", etc. → Execute per user declaration
-- If the user says "do core first", "only core" → Execute as core version
+- If the user says "implement Core", "do Update 1", "implement all", etc. → Execute per user declaration
+- If not declared → Continue to ②
 
-**② If the user hasn't declared, check if the core version is ready:**
-```bash
-git tag | grep v-core
-```
-- If `v-core` tag exists → Core version is done. Ask the user: "Core version detected as complete (tag: v-core). Should we continue with enhanced features this time?" Wait for explicit answer.
-- If not → Execute as core version; don't ask.
-
-**③ Default behavior: Execute as core version.**
-
-After confirming version, declare:
-> "This iteration will write **core version** task files, covering only the spec-core scope."
-
-If the target is confirmed as enhanced, continue to Step 0b before declaring.
-
-## Step 0b: Confirm Enhanced Feature Scope (Only when target is enhanced version)
-
-**① Infer which enhanced features are already implemented from existing tags and reports:**
+### ② Infer already-completed phases
 
 ```bash
-# Check existing enhanced version tags
-git tag | grep v-enhanced
-
-# Check existing implementation reports
-ls docs/reports/ 2>/dev/null
+# View existing tags
+git tag | sort
 ```
 
-Check each enhanced feature in `spec-enhanced.md`:
-- Corresponding `v-enhanced-<feature-name>` tag exists, or a report file for the corresponding Stage exists → **Already implemented**
-- Otherwise → **Not yet implemented**
+Read each module's original spec and get the phase list from the "Iteration Plan" section. Check each phase against existing tags:
 
-**② List unimplemented enhanced features, ask the user:**
+| Phase | Corresponding Tag | Complete? |
+|-------|-------------------|-----------|
+| Core | `v-core` | Complete if tag exists |
+| Update 1: <feature> | `v-update-1-<feature>` | Complete if tag exists |
+| Update N: <feature> | `v-update-N-<feature>` | Complete if tag exists |
+
+### ③ Determine target for this iteration
+
+**If Core is not complete:**
+Default target is Core. Declare:
+> "This iteration will write **Core phase** task files, covering only the spec-core scope."
+
+**If Core is complete and Update phases remain:**
+List all incomplete Update phases and ask the user:
 
 ```
-The following enhanced features are not yet implemented:
+Core phase is complete (tag: v-core).
+The following update phases are not yet implemented:
 
-1. <Enhanced feature A>: <One-line description>
-2. <Enhanced feature B>: <One-line description>
-3. <Enhanced feature C>: <One-line description>
+1. Update 1: <feature-name> — <one-line description>
+2. Update 2: <feature-name> — <one-line description>
+...
 
-Implement all this time, or only some?
-(Example answers: "all", "1 and 3", "just A")
+Which ones to implement this time? (Example: "all", "1", "1 and 2")
 ```
 
 Wait for explicit user answer; do not skip.
 
-**③ Based on user selection, determine the target feature list for this iteration.**
-
-If the user selected partial features, check dependency relationships (from the "Dependency conditions" field in each enhanced feature in spec-enhanced):
-- If a selected feature depends on an unselected enhanced feature → Prompt: "Enhanced feature X depends on enhanced feature Y; both must be implemented. Confirm?"
+Based on user selection, check dependency relationships (from the "Dependency Conditions" field in each spec-update file):
+- If a selected phase depends on an unselected Update phase → Highlight dependency and ask user to confirm
 
 After dependency confirmation, declare:
-> "This iteration will write enhanced version task files. Target features: <confirmed feature list>."
+> "This iteration will write task files for **<target phase list>**."
+
+**If all phases are complete:**
+Inform the user; no task files to generate.
 
 ## Execution Flow
 
-1. Execute Step 0, confirm target version
+1. Execute Step 0, confirm target phase scope
 2. Read `docs/YYYY-MM-DD-modules.md`, get leaf module list (exclude TODO modules)
 3. Order by dependency (depended-on modules first)
 4. Execute the "Single Module Task Division Process" serially for each module
@@ -90,22 +82,23 @@ After dependency confirmation, declare:
 ### Read Input Files
 
 - `docs/specs/YYYY-MM-DD-<module>-spec.md` (original spec)
-- `docs/specs/YYYY-MM-DD-<module>-spec-core.md` (core version scope)
-- `docs/specs/YYYY-MM-DD-<module>-spec-enhanced.md` (enhanced version scope)
+- `docs/specs/YYYY-MM-DD-<module>-spec-core.md` (Core phase scope)
+- `docs/specs/YYYY-MM-DD-<module>-spec-update-1-<feature>.md` (Update 1, if in target scope)
+- `docs/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md` (further Updates, if in target scope)
 
 ### Divide Stages
 
 **Stage division principles:**
 - Each stage corresponds to a batch of features that can be **independently demonstrated**
-- Core features come first, forming the initial stages
-- Enhanced features form subsequent stages; each enhanced feature typically corresponds to one stage
+- Core features form the initial stages (one spec-core may be split into multiple stages by natural grouping)
+- Each Update phase typically corresponds to one or a few stages
 - Dependencies between stages must be explicitly declared
 - Stage workload: recommended to correspond to several hours to a day of implementation (not too fine, not too coarse)
 
-**Division scope strictly aligns with the target version for this iteration:**
-- Target is **core version** → Only divide stages for features in spec-core; spec-enhanced content does not appear in task files
-- Target is **partial enhanced features** → Only divide stages for the feature list confirmed in Step 0b; other enhanced features do not appear
-- Target is **all enhanced features** → Divide stages for all unimplemented enhanced features
+**Division scope strictly aligns with the target phases for this iteration:**
+- Target is **Core** → Only divide stages for features in spec-core
+- Target is **specific Update phases** → Only divide stages for the confirmed target Update phases
+- Target is **all** → Divide stages for Core and all incomplete Update phases
 
 Features not in the target scope: no stages, no demos, no plans. Task files only reflect what's being done this iteration.
 
@@ -135,9 +128,10 @@ File path: `docs/tasks/YYYY-MM-DD-<module>-tasks.md`
 
 | Stage | Name | Corresponding Scope | Estimated Effort |
 |-------|------|---------------------|-------------------|
-| Stage 1 | <Name> | spec-core: <feature list> | <Estimate> |
-| Stage 2 | <Name> | spec-core: <feature list> | <Estimate> |
-| Stage 3 | <Name> | spec-enhanced: <enhanced feature name> | <Estimate> |
+| Stage 1 | <Name> | Core: <feature list> | <Estimate> |
+| Stage 2 | <Name> | Core: <feature list> | <Estimate> |
+| Stage 3 | <Name> | Update 1 (<feature-name>): <feature list> | <Estimate> |
+| Stage N | <Name> | Update M (<feature-name>): <feature list> | <Estimate> |
 
 ## Stage Dependencies
 
@@ -187,15 +181,15 @@ Mocked external dependencies:
 - `<module-name>`: Mock as <Mock behavior description> (or: No external dependencies)
 
 Run example:
-```bash
+\`\`\`bash
 # Example command
 <command>
-```
+\`\`\`
 
 Expected output:
-```
+\`\`\`
 <expected output>
-```
+\`\`\`
 
 ---
 
@@ -205,17 +199,17 @@ Expected output:
 
 ---
 
-### Stage N (Enhanced): <Enhanced feature name>
+### Stage N (Update M: <feature-name>): <Name>
 
-(Same format as above; note in "Corresponding spec scope" that it comes from spec-enhanced)
+(Same format as above; note in "Corresponding spec scope" that it comes from spec-update-M-<feature>)
 ```
 
 ### Dispatch Review Subagent
 
 After self-check passes, use the template in `task-file-reviewer-prompt.md` to dispatch a review subagent (standard model), providing:
 - Task file path
-- Corresponding spec file paths (original spec, spec-core, spec-enhanced)
-- Target version and feature list for this iteration (from Step 0 / Step 0b confirmation)
+- Corresponding spec file paths (original spec, spec-core, spec-update-N-* files involved in this iteration)
+- Target phase list for this iteration (from Step 0 confirmation)
 
 Review results:
 - Approved → Commit file to git, continue to next module
@@ -252,3 +246,4 @@ After all confirmed: Call `my-powers:writing-plans`
 - Make stages too fine (one stage per hour) or too coarse (entire module in one stage)
 - Commit task files before review subagent passes
 - Submit without re-review after issues are found
+- Mix features outside the target phase scope into task files

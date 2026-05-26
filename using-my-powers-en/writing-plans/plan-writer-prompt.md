@@ -14,8 +14,8 @@ Agent (general-purpose):
 
     **Input file paths (read these files for details):**
     - Original spec: `docs/specs/YYYY-MM-DD-<module>-spec.md`
-    - Core version scope: `docs/specs/YYYY-MM-DD-<module>-spec-core.md` (if applicable)
-    - Enhanced version scope: `docs/specs/YYYY-MM-DD-<module>-spec-enhanced.md` (if applicable)
+    - Core phase scope: `docs/specs/YYYY-MM-DD-<module>-spec-core.md` (if this stage belongs to the Core scope)
+    - Update phase scope: `docs/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md` (if this stage belongs to an Update phase)
 
     **Below is the task description for this stage (extracted from tasks file; coordinator has already extracted it; no need to read the file yourself):**
     ```
@@ -37,7 +37,7 @@ Agent (general-purpose):
 
     <One sentence describing the goal of this stage>
 
-    Corresponding spec scope: <spec-core or spec-enhanced, which features>
+    Corresponding spec scope: <spec-core or spec-update-N-<feature>, which features>
 
     ## File Structure
 

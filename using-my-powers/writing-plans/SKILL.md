@@ -11,15 +11,14 @@ description: "用户确认所有任务文件后使用。并行唤起子智能体
 
 ## 执行流程
 
-### 第 0 步：确认当前目标版本与功能范围
+### 第 0 步：确认当前目标阶段范围
 
 从 `writing-task-files` 传入的上下文中确认：
-- 目标版本（基础版 / 增强版）
-- 若为增强版：本次目标功能列表（用户在 `writing-task-files` 第 0b 步已确认）
+- 本次目标阶段列表（Core / 具体 Update 阶段名称）
 
-若上下文不明确，重新执行与 `writing-task-files` 相同的判断逻辑（第 0 步 + 第 0b 步）。
+若上下文不明确，重新执行与 `writing-task-files` 相同的判断逻辑（第 0 步）。
 
-宣告当前版本范围与功能列表后再构建任务矩阵，确保只纳入属于本次目标范围的 Stage，排除已实现或本次不做的 Stage。
+宣告目标阶段列表后再构建任务矩阵，确保只纳入属于本次目标范围的 Stage，排除已实现或本次不做的 Stage。
 
 ### 第 1 步：构建任务矩阵
 
@@ -44,7 +43,7 @@ description: "用户确认所有任务文件后使用。并行唤起子智能体
 
 **每个子智能体获得的精确上下文（协调者显式打包）：**
 - 板块名称、阶段编号
-- 对应 spec 文件路径（原始 spec + core/enhanced 差异文件路径）
+- 对应 spec 文件路径（原始 spec + 该阶段对应的 spec-core 或 spec-update-N-<feature> 文件路径）
 - tasks 文件中对应阶段的完整文本（协调者提取后传入，子智能体不自行读取文件）
 - 输出计划文件的目标路径
 - 本文件「子智能体任务说明」章节的完整文本
@@ -89,8 +88,8 @@ description: "用户确认所有任务文件后使用。并行唤起子智能体
 
 对应 spec 文件路径：
 - `docs/specs/YYYY-MM-DD-<module>-spec.md`
-- `docs/specs/YYYY-MM-DD-<module>-spec-core.md`（如适用）
-- `docs/specs/YYYY-MM-DD-<module>-spec-enhanced.md`（如适用）
+- `docs/specs/YYYY-MM-DD-<module>-spec-core.md`（若本阶段属于 Core 范围）
+- `docs/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`（若本阶段属于某 Update 阶段）
 
 以下是该阶段的任务说明（摘自 tasks 文件）：
 
@@ -113,7 +112,7 @@ description: "用户确认所有任务文件后使用。并行唤起子智能体
 
 <一句话说明本阶段目标>
 
-对应 spec 范围：<spec-core 还是 spec-enhanced，哪些功能>
+对应 spec 范围：<spec-core 还是 spec-update-N-<feature>，哪些功能>
 
 ## 文件结构
 

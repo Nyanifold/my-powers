@@ -63,12 +63,12 @@ module-brainstorming（模块头脑风暴）
    产出 docs/YYYY-MM-DD-modules.md。
    ↓ 用户确认
 writing-module-specs（编写模块规格说明）
-   针对每个叶子模块：头脑风暴需求，产出包含渐进式实现章节
-   （核心版 vs. 增强版）的完整规格说明。
+   针对每个叶子模块：头脑风暴需求，产出包含迭代计划章节
+   （Core + 若干 Update 阶段）的完整规格说明。
    ↓ 用户确认所有规格说明
 splitting-specs（拆分规格说明）
-   并行子智能体将每份规格说明拆分为 -spec-core.md 与
-   -spec-enhanced.md 差异文件，原始规格说明保持不变。
+   并行子智能体将每份规格说明按迭代计划拆分为 spec-core.md
+   与若干 spec-update-N-<feature>.md 文件，原始规格说明保持不变。
    ↓
 writing-task-files（编写任务文件）
    针对每个模块：将规格说明特性映射至可独立演示的阶段。
@@ -144,9 +144,10 @@ superpowers `test-driven-development` 技能中的 TDD 纪律被直接内嵌至 
 docs/
 ├── YYYY-MM-DD-modules.md                        # module-brainstorming
 ├── specs/
-│   ├── YYYY-MM-DD-<module>-spec.md              # writing-module-specs
-│   ├── YYYY-MM-DD-<module>-spec-core.md         # splitting-specs
-│   └── YYYY-MM-DD-<module>-spec-enhanced.md     # splitting-specs
+│   ├── YYYY-MM-DD-<module>-spec.md                    # writing-module-specs
+│   ├── YYYY-MM-DD-<module>-spec-core.md               # splitting-specs（Core 阶段）
+│   ├── YYYY-MM-DD-<module>-spec-update-1-<feature>.md # splitting-specs（Update 1）
+│   └── YYYY-MM-DD-<module>-spec-update-N-<feature>.md # splitting-specs（Update N）
 ├── tasks/
 │   └── YYYY-MM-DD-<module>-tasks.md             # writing-task-files
 ├── plans/

@@ -64,11 +64,12 @@ module-brainstorming
    ↓ user confirms
 writing-module-specs
    For each leaf module: brainstorm requirements, produce full spec
-   with a progressive implementation section (core vs. enhanced).
+   with an iteration plan section (Core + optional Update phases).
    ↓ user confirms all specs
 splitting-specs
-   Parallel subagents split each spec into -spec-core.md and
-   -spec-enhanced.md diff files. Original spec stays unchanged.
+   Parallel subagents split each spec into spec-core.md and
+   spec-update-N-<feature>.md files per the iteration plan.
+   Original spec stays unchanged.
    ↓
 writing-task-files
    For each module: map spec features to independently demonstrable
@@ -124,8 +125,8 @@ Each phase in my-powers has a direct ancestor or close analogue in superpowers.
 | my-powers phase | superpowers origin | Notes |
 |---|---|---|
 | `module-brainstorming` | `brainstorming` | Extended from single-feature design to whole-system module decomposition, with structured boundary and interface definition |
-| `writing-module-specs` | `brainstorming` + `writing-plans` | Merges the design dialogue from `brainstorming` with the spec-writing output from `writing-plans`; adds progressive implementation sections |
-| `splitting-specs` | — | Original. Produces core/enhanced diff variants that drive versioned implementation |
+| `writing-module-specs` | `brainstorming` + `writing-plans` | Merges the design dialogue from `brainstorming` with the spec-writing output from `writing-plans`; adds iteration plan sections (Core + optional Update phases) |
+| `splitting-specs` | — | Original. Produces per-phase diff variants (spec-core + spec-update-N-*) derived from the spec's iteration plan |
 | `writing-task-files` | `writing-plans` | Intermediate stage between spec and plan; makes each implementation stage independently demonstrable |
 | `writing-plans` | `writing-plans` | Direct adaptation. Parallel subagent dispatch, same emphasis on step-level specificity |
 | `subagent-implementation` | `subagent-driven-development` | Direct adaptation. Preserves two-stage review (spec compliance then code quality); adds dependency ordering, four status codes, and per-task implementation reports |
@@ -146,9 +147,10 @@ All intermediate files use a `YYYY-MM-DD-` date prefix. The `docs/` directory is
 docs/
 ├── YYYY-MM-DD-modules.md                        # module-brainstorming
 ├── specs/
-│   ├── YYYY-MM-DD-<module>-spec.md              # writing-module-specs
-│   ├── YYYY-MM-DD-<module>-spec-core.md         # splitting-specs
-│   └── YYYY-MM-DD-<module>-spec-enhanced.md     # splitting-specs
+│   ├── YYYY-MM-DD-<module>-spec.md                    # writing-module-specs
+│   ├── YYYY-MM-DD-<module>-spec-core.md               # splitting-specs (Core phase)
+│   ├── YYYY-MM-DD-<module>-spec-update-1-<feature>.md # splitting-specs (Update 1)
+│   └── YYYY-MM-DD-<module>-spec-update-N-<feature>.md # splitting-specs (Update N)
 ├── tasks/
 │   └── YYYY-MM-DD-<module>-tasks.md             # writing-task-files
 ├── plans/

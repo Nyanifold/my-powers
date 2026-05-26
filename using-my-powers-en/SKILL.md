@@ -22,7 +22,7 @@ module-brainstorming        ← Discuss system decomposition with user, define m
          ↓ User confirms module description document
 writing-module-specs        ← Brainstorm each leaf module serially, write specs
          ↓ User confirms all specs
-splitting-specs             ← Subagents split core/enhanced specs for each module in parallel
+splitting-specs             ← Subagents split each module's spec into iteration phase files in parallel (spec-core + spec-update-N-*)
          ↓
 writing-task-files          ← Write task files for each module serially (stages, deliverables, demos)
          ↓ User confirms all task files
@@ -41,9 +41,10 @@ All intermediate files use a date prefix `YYYY-MM-DD-`.
 docs/
 ├── YYYY-MM-DD-modules.md                             # Module description document
 ├── specs/
-│   ├── YYYY-MM-DD-<module>-spec.md                  # Original spec (main agent)
-│   ├── YYYY-MM-DD-<module>-spec-core.md             # Core version diff (subagent)
-│   └── YYYY-MM-DD-<module>-spec-enhanced.md         # Enhanced version diff (subagent)
+│   ├── YYYY-MM-DD-<module>-spec.md                       # Original spec (main agent)
+│   ├── YYYY-MM-DD-<module>-spec-core.md                  # Core phase scope (subagent)
+│   ├── YYYY-MM-DD-<module>-spec-update-1-<feature>.md    # Update 1 increment (subagent)
+│   └── YYYY-MM-DD-<module>-spec-update-N-<feature>.md    # Update N increment (subagent)
 ├── tasks/
 │   └── YYYY-MM-DD-<module>-tasks.md                 # Task file (main agent)
 ├── plans/
@@ -58,7 +59,7 @@ Demo files are placed under `demo/<module>/stage-N/`.
 ## Core Principles
 
 - **Module boundaries first**: Define boundaries clearly; internal changes to a module should not affect other modules
-- **Progressive implementation**: Each module distinguishes core features from enhanced features; the core version runs independently
+- **Progressive implementation**: Each module's iteration plan starts from Core (minimal runnable set), with optional Update phases layered on top; each phase preserves existing interfaces
 - **Subagent isolation**: Each subagent receives only the precise context needed for its task; no inherited conversation history
 - **Verification before declaration**: Never claim any phase is complete without running verification commands
 - **Continuous execution**: During implementation, do not ask the user whether to continue unless encountering an unresolvable BLOCKED state

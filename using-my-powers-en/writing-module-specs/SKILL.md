@@ -10,7 +10,7 @@ Brainstorm each leaf module in sequence, writing complete specification document
 **Declaration:** 「I am using my-powers:writing-module-specs, current module: <name>」
 
 <HARD-GATE>
-Do not call splitting-specs until the user confirms all specs. Each module's spec must include a "Progressive Implementation" section.
+Do not call splitting-specs until the user confirms all specs. Each module's spec must include an "Iteration Plan" section.
 </HARD-GATE>
 
 ## Processing Order
@@ -55,9 +55,11 @@ Declare the current module and briefly recap its definition from the module desc
   - How does this module handle errors returned by dependent modules?
   - Is there state that needs cross-module synchronization?
 
-- **Progressive implementation breakdown**
-  - Which features form the minimal set for system operation?
-  - Which features can be layered on later without breaking interfaces?
+- **Iteration plan**
+  - Which features form the minimal set for system operation (Core)?
+  - Are there natural feature groupings suited for delivery as separate update phases?
+  - Are there dependency orderings between update phases?
+  - Based on feature scope and dependencies, how many update phases are recommended?
 
 ### Step 3: Present Design Proposals
 
@@ -65,7 +67,7 @@ Present in segments; confirm each before continuing:
 1. **Architecture overview** — Main internal components of the module (include class diagrams if complex)
 2. **Interface refinement** — More detailed interface definitions than the module description document (include ER diagrams for persistence modules)
 3. **Error handling strategy** — How each type of error is handled
-4. **Progressive implementation breakdown** — Specific boundaries between core features vs. enhanced features
+4. **Iteration plan** — Core's minimal set scope, plus the feature boundaries and ordering of each update phase
 
 ### Step 4: Write the Spec File
 
@@ -141,21 +143,29 @@ File path: `docs/specs/YYYY-MM-DD-<module>-spec.md`
 - **Reliability:** <Retry strategy, idempotency requirements>
 - **Security:** <Authentication, authorization, data protection requirements>
 
-## Progressive Implementation
+## Iteration Plan
 
-### Core Features
+> This section defines the iteration phases for this module. The number of phases is determined by feature scope and dependency relationships — from one to many.
+> Each phase layers on top of the previous phase without breaking existing interfaces.
 
-> These features form the minimal runnable set for the module. The system should function correctly after core implementation.
+### Core: <minimal runnable set name>
+
+> After Core is complete, the module should run independently and the system should function correctly.
 
 - <Feature 1>: <Brief description>
 - <Feature 2>: <Brief description>
 
-### Enhanced Features
+### Update 1: <feature-name>
 
-> These features layer on top of the core version without breaking existing interfaces.
+> Layers on top of Core without breaking existing interfaces.
 
-- <Enhanced feature A>: <Brief description, including interface differences from core version (if any)>
-- <Enhanced feature B>: <Brief description>
+- <Feature A>: <Brief description, including interface differences from the preceding phase (if any)>
+
+<!-- If there are more update phases, continue with the format below. If not, delete this comment and the example. -->
+
+### Update N: <feature-name>
+
+- <Feature X>: <Brief description>
 
 ## Open Questions (TODO)
 
@@ -213,8 +223,8 @@ After all confirmed: Call `my-powers:splitting-specs`.
 
 **Never:**
 - Ask multiple questions in a single message
-- Skip the "Progressive Implementation" section
+- Skip the "Iteration Plan" section
 - Call splitting-specs before the user confirms all specs
 - Commit a spec before the review subagent passes
 - Submit without re-review after issues are found
-- Pass review with enhanced features that have dependency ordering issues uncorrected
+- Pass review with Update phases that have dependency ordering issues uncorrected

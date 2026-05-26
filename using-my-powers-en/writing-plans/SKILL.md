@@ -11,15 +11,14 @@ Generate plan documents for each task stage of each module in parallel. Plan doc
 
 ## Execution Flow
 
-### Step 0: Confirm Current Target Version and Feature Scope
+### Step 0: Confirm Current Target Phase Scope
 
 Confirm from the context passed by `writing-task-files`:
-- Target version (core / enhanced)
-- If enhanced: the target feature list for this iteration (confirmed by the user in `writing-task-files` Step 0b)
+- Target phase list for this iteration (Core / specific Update phase names)
 
-If context is unclear, re-execute the same judgment logic as `writing-task-files` (Step 0 + Step 0b).
+If context is unclear, re-execute the same judgment logic as `writing-task-files` (Step 0).
 
-Declare the current version scope and feature list before building the task matrix, ensuring only Stages within the target scope are included, excluding already-implemented or not-doing-this-time Stages.
+Declare the target phase list before building the task matrix, ensuring only Stages within the target scope are included, excluding already-implemented or not-doing-this-time Stages.
 
 ### Step 1: Build Task Matrix
 
@@ -44,7 +43,7 @@ Count total tasks, declare: "N tasks total; will dispatch subagents in parallel 
 
 **Precise context each subagent receives (explicitly packaged by coordinator):**
 - Module name, stage number
-- Corresponding spec file paths (original spec + core/enhanced diff file paths)
+- Corresponding spec file paths (original spec + the spec-core or spec-update-N-<feature> file for this stage)
 - Complete text of the corresponding stage from the tasks file (extracted and passed in by coordinator; subagent does not read files itself)
 - Target path for the output plan file
 - Complete text of the "Subagent Task Description" section in this file
@@ -89,8 +88,8 @@ Your task is to write a plan document for module "<module-name>" Stage <N> (<sta
 
 Corresponding spec file paths:
 - `docs/specs/YYYY-MM-DD-<module>-spec.md`
-- `docs/specs/YYYY-MM-DD-<module>-spec-core.md` (if applicable)
-- `docs/specs/YYYY-MM-DD-<module>-spec-enhanced.md` (if applicable)
+- `docs/specs/YYYY-MM-DD-<module>-spec-core.md` (if this stage belongs to the Core scope)
+- `docs/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md` (if this stage belongs to an Update phase)
 
 Below is the task description for this stage (extracted from tasks file):
 
@@ -113,7 +112,7 @@ Below is the task description for this stage (extracted from tasks file):
 
 <One sentence describing the goal of this stage>
 
-Corresponding spec scope: <spec-core or spec-enhanced, which features>
+Corresponding spec scope: <spec-core or spec-update-N-<feature>, which features>
 
 ## File Structure
 

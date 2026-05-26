@@ -18,10 +18,11 @@ Agent（general-purpose）:
 
     **对应 spec 文件（读取以核对覆盖范围）：**
     - 原始 spec：`docs/specs/YYYY-MM-DD-<module>-spec.md`
-    - 基础版范围：`docs/specs/YYYY-MM-DD-<module>-spec-core.md`
-    - 增强版范围：`docs/specs/YYYY-MM-DD-<module>-spec-enhanced.md`（如适用）
+    - Core 阶段范围：`docs/specs/YYYY-MM-DD-<module>-spec-core.md`
+    - 本次涉及的 Update 阶段文件（如适用，由协调者列出）：
+      - `docs/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`
 
-    **本次目标版本（由协调者提供）：** 基础版 | 增强版（目标功能：<功能列表>）
+    **本次目标阶段（由协调者提供）：** Core | Update N-*（目标阶段列表：<阶段列表>）
 
     ## 审查维度
 

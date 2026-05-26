@@ -14,8 +14,8 @@ Agent（general-purpose）:
 
     **输入文件路径（读取这些文件获取详情）：**
     - 原始 spec：`docs/specs/YYYY-MM-DD-<module>-spec.md`
-    - 基础版范围：`docs/specs/YYYY-MM-DD-<module>-spec-core.md`（如适用）
-    - 增强版范围：`docs/specs/YYYY-MM-DD-<module>-spec-enhanced.md`（如适用）
+    - Core 阶段范围：`docs/specs/YYYY-MM-DD-<module>-spec-core.md`（若本阶段属于 Core 范围）
+    - Update 阶段范围：`docs/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`（若本阶段属于某 Update 阶段）
 
     **以下是该阶段的任务说明（摘自 tasks 文件，协调者已提取，不需要自行读取文件）：**
     ```
@@ -37,7 +37,7 @@ Agent（general-purpose）:
 
     <一句话说明本阶段目标>
 
-    对应 spec 范围：<spec-core 还是 spec-enhanced，哪些功能>
+    对应 spec 范围：<spec-core 还是 spec-update-N-<feature>，哪些功能>
 
     ## 文件结构
 
