@@ -16,7 +16,7 @@ Install it by placing the skill directory where your agent can find it:
 # Claude Code example:
 # Clone or copy to your skills directory
 mkdir -p ~/.claude/skills/using-my-powers
-cp -r using-my-powers ~/.claude/skills/using-my-powers
+cp -r using-my-powers ~/.claude/skills/using-my-powers # Chinese version
 # or if you prefer to use the English version
 cp -r using-my-powers-en ~/.claude/skills/using-my-powers
 ```

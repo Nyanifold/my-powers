@@ -2,7 +2,7 @@
 
 [English](README.md)
 
-面向 AI 编码智能体的多模块软件开发方法论技能集。
+面向 AI 编程智能体的多模块软件开发方法论技能集。
 
 my-powers 深受 Jesse Vincent 的 [superpowers](https://github.com/obra/superpowers) 启发。核心理念——将技能作为可组合的流程文档、由子智能体驱动的两阶段审查实现、TDD 作为强制性要求、完成声明前必须提供证据——均直接来源于该项目。my-powers 在此基础上进行了适配与扩展，专为以多模块系统设计为核心的工作流程而构建。
 
@@ -16,7 +16,7 @@ my-powers 深受 Jesse Vincent 的 [superpowers](https://github.com/obra/superpo
 # Claude Code 示例：
 # 克隆或复制到技能目录
 mkdir -p ~/.claude/skills/using-my-powers
-cp -r using-my-powers ~/.claude/skills/using-my-powers
+cp -r using-my-powers ~/.claude/skills/using-my-powers # 中文版本
 # 如需使用英文版本
 cp -r using-my-powers-en ~/.claude/skills/using-my-powers
 ```
@@ -169,7 +169,7 @@ my-powers/
 ├── README.cn.md
 ├── LICENSE
 ├── docs/                              # 由技能在运行时生成
-├── using-my-powers/                   # 中文变体
+├── using-my-powers/                   # 中文版本
 │   ├── SKILL.md                       # 入口
 │   ├── module-brainstorming/
 │   │   └── modules-reviewer-prompt.md
@@ -195,7 +195,7 @@ my-powers/
 │   │   └── condition-based-waiting-example.ts
 │   ├── verification-before-completion/
 │   └── receiving-code-review/
-└── using-my-powers-en/                # 英文变体（结构相同）
+└── using-my-powers-en/                # 英文版本（结构相同）
     ├── module-brainstorming/
     ├── writing-module-specs/
     └── ...
