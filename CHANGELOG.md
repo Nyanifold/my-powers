@@ -1,0 +1,37 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+
+---
+
+## [0.1.1] - 2026-05-28
+
+### Added
+
+- **Draft confirmation flow** — `module-brainstorming` and `writing-module-specs` now require writing a draft with `- [ ]` checkboxes before any formal document. Each key point is confirmed with the user one at a time; explicit approval is required before proceeding to the formal document. This prevents misaligned assumptions from surfacing late in the implementation phase.
+- **Reference material collection step** — `module-brainstorming` now dispatches an Explore subagent before writing the draft when the working directory contains project infrastructure or the user mentioned reference materials. The subagent maps relevant files/directories per module and attaches findings to the draft.
+- **"Dependencies on existing implementations" field** — Leaf module definitions now require a fifth item: listing existing code, libraries, or services the module will reuse or wrap, along with the dependency style (direct call / wrapped and re-exposed / underlying driver). Reviewer prompts updated to check this field.
+- **Task tracking** — `module-brainstorming` and `writing-module-specs` now create TaskCreate tasks for each checklist item, marking them completed as work progresses.
+- **`reference-collector-prompt.md`** — New template for dispatching the reference material collection subagent in `module-brainstorming` (both EN and ZH versions).
+- **Anti-Pattern sections** in `module-brainstorming` and `writing-module-specs` — Explicit call-outs for "this system doesn't need decomposition" and "this module is simple enough to skip draft confirmation." Establishes that single-module and short-spec outcomes are valid conclusions reached through discussion, not reasons to skip the process.
+
+### Changed
+
+- **Sub-skill invocation style** — All sub-skill transitions (e.g., `my-powers:writing-module-specs`) changed to "invoke the X sub-skill — read `X/SKILL.md`" with the Read tool. Entry `SKILL.md` updated in both EN and ZH to document this pattern. Affects: `module-brainstorming`, `writing-module-specs`, `splitting-specs`, `subagent-implementation`, `writing-task-files`, `writing-plans`, `systematic-debugging`, and their reviewer prompts.
+- **Questioning approach** — "Provide options" guidance upgraded to "provide 3-5 concrete options with the core tradeoff of each explained." Applied in `module-brainstorming` and `writing-module-specs`.
+- **Entry SKILL.md section title** — "Skill Locations" renamed to "Sub-Skill Structure and Invocation" (both EN and ZH).
+- **Module tree format** — Template now shows that leaf nodes may contain sub-modules (internal organization; no separate spec or task file required).
+- **`writing-module-specs`** — Added note that internal implementation hints in `modules.md` (data structures, storage approach, internal layering) are not constraints; the spec phase starts internal design from scratch.
+- **`modules-reviewer-prompt.md`** — Definition completeness check updated from four to five required items; added "existing implementation dependencies" as a dedicated review dimension.
+- **`writing-module-specs` step numbering** — Draft Confirmation inserted as new Step 4; former Step 4 (Write Spec File) becomes Step 5; former Step 5 (Dispatch Review Subagent) becomes Step 6.
+- **`module-brainstorming` checklist** — Reference material collection inserted as new step 5; former step 5 (write document) becomes step 6; former step 6 (wait for user confirmation) becomes step 7.
+- **README / README.zh.md** — Added version badge (`0.1.1`) and tested environment note (Claude Code + Claude Sonnet 4.6 / Deepseek V4 Pro / Kimi 2.6).
+
+### Red Flags added
+
+The following anti-patterns are now explicitly listed as Red Flags in their respective skills:
+
+- `module-brainstorming`: Skip draft confirmation flow; skip reference material collection when infrastructure exists; write formal document without user approval after all points confirmed.
+- `writing-module-specs`: Skip draft confirmation flow; write formal spec without user approval after all points confirmed; treat `modules.md` internal hints as settled conclusions and skip discussion.

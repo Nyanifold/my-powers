@@ -22,12 +22,13 @@ Agent (general-purpose):
 
     | Dimension | Checkpoint |
     |-----------|------------|
-    | Definition completeness | Does each leaf module have all four complete definitions (responsibilities, boundaries, interfaces, dependencies)? |
+    | Definition completeness | Does each leaf module have all five complete definitions (responsibilities, boundaries, interfaces, dependencies, dependencies on existing implementations)? |
     | Circular dependencies | Are there circular calls between modules? (A depends on B, B depends on A) |
     | Interface stability | Do interface definitions bind to internal implementation details? (Stable interfaces don't change with internal changes) |
     | Responsibility coverage | Is there any obvious system responsibility that can't be assigned to any defined module? |
     | Tight coupling identification | Do two modules' interfaces change frequently with each other's internal implementation? (This signals they should be merged) |
     | Boundary clarity | Is each module's "excluded" list sufficiently clear? (Unclear boundaries lead to unchecked responsibility creep into adjacent modules during implementation) |
+    | Existing implementation dependencies | Does "dependencies on existing implementations" specify the dependency style (direct call / wrapped and re-exposed / underlying driver)? If the module is itself a wrapper layer, does it clearly state what is being wrapped and what interfaces are exposed? |
 
     ## Calibration Principles
 

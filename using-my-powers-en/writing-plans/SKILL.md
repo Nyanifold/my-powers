@@ -74,7 +74,7 @@ All plan documents generated:
 All plans have passed subagent self-review. Please confirm whether to begin the implementation phase.
 ```
 
-After user confirmation, call `my-powers:subagent-implementation`
+After user confirmation, invoke the subagent-implementation sub-skill — read `subagent-implementation/SKILL.md`
 
 ---
 

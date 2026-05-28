@@ -64,4 +64,4 @@ Agent (general-purpose):
 
 **Follow-up:**
 - Issues found → Coordinator notifies the corresponding plan document to be modified → Re-dispatch review subagent for that document
-- All Approved → List all plan files, ask user for confirmation, enter `my-powers:subagent-implementation`
+- All Approved → List all plan files, ask user for confirmation, invoke the subagent-implementation sub-skill — read `subagent-implementation/SKILL.md`

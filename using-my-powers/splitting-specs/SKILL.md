@@ -59,7 +59,7 @@ description: "所有板块 spec 用户确认后使用。并行唤起子智能体
 - 列出所有生成的文件
 - 确认每个板块均已通过检查
 
-汇总完成后：调用 `my-powers:writing-task-files`
+汇总完成后：调用 writing-task-files 子技能 — 读取 `writing-task-files/SKILL.md` 技能文件
 
 ---
 

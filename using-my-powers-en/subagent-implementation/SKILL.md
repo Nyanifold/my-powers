@@ -203,7 +203,7 @@ After all task stages complete, dispatch a final code review subagent (most capa
 - Are there consistency issues introduced across stages?
 - Can all demos run?
 
-After review passes, call `my-powers:finishing-a-module`
+After review passes, invoke the finishing-a-module sub-skill — read `finishing-a-module/SKILL.md`
 
 ## Continuous Execution Specification
 

@@ -275,4 +275,4 @@ Supporting files in this directory:
 - **`condition-based-waiting.md`** — Replace arbitrary timeouts with condition polling
 
 **Related skills:**
-- **`my-powers:verification-before-completion`** — Verify before claiming a fix works
+- **verification-before-completion sub-skill** (read `verification-before-completion/SKILL.md`) — Verify before claiming a fix works

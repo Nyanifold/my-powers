@@ -77,9 +77,9 @@ Demo files are placed under `demo/<module>/stage-N/`.
 - Before claiming completion → use `verification-before-completion` directly
 - Receiving code review → use `receiving-code-review` directly
 
-## Skill Locations
+## Sub-Skill Structure and Invocation
 
-All sub-skills are located in the same directory as this file (`using-my-powers/`):
+All sub-skills are located in the same directory as this file (`using-my-powers/`), each with its own `SKILL.md`:
 
 ```
 using-my-powers/SKILL.md                        ← Entry point (this file)
@@ -96,3 +96,5 @@ using-my-powers/systematic-debugging/SKILL.md           ← When encountering bu
 using-my-powers/verification-before-completion/SKILL.md ← Before claiming completion
 using-my-powers/receiving-code-review/SKILL.md          ← When receiving PR review feedback
 ```
+
+**How to invoke a sub-skill:** When the workflow says "invoke the X sub-skill — read `X/SKILL.md`", use the Read tool to read that file path directly and follow its instructions. No skill-name tool call is needed.

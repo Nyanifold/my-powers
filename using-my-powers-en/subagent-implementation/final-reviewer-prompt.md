@@ -75,5 +75,5 @@ Agent (general-purpose):
 **Reviewer returns:** Global status + categorized issue list
 
 **Follow-up:**
-- ✅ Pass → Call `my-powers:finishing-a-module`
+- ✅ Pass → invoke the finishing-a-module sub-skill — read `finishing-a-module/SKILL.md`
 - ❌ Issues Found → Coordinator evaluates impact scope, decides fix strategy (targeted fix / re-implement a stage), re-dispatches global review after fix

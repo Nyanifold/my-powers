@@ -64,4 +64,4 @@ Agent（general-purpose）:
 
 **后续处理：**
 - 发现问题 → 协调者通知对应的计划文档修改 → 重新派发审查子智能体对该文档重审
-- 全部 Approved → 列出所有计划文件，请用户确认，进入 `my-powers:subagent-implementation`
+- 全部 Approved → 列出所有计划文件，请用户确认，调用 subagent-implementation 子技能 — 读取 `subagent-implementation/SKILL.md` 技能文件

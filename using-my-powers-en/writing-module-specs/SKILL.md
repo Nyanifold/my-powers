@@ -9,9 +9,17 @@ Brainstorm each leaf module in sequence, writing complete specification document
 
 **Declaration:** 「I am using my-powers:writing-module-specs, current module: <name>」
 
+**Task tracking:** For each leaf module, create a "Module <name> spec" task with TaskCreate. Mark it in_progress when starting and completed after the review passes and the spec is committed.
+
 <HARD-GATE>
 Do not call splitting-specs until the user confirms all specs. Each module's spec must include an "Iteration Plan" section.
 </HARD-GATE>
+
+## Anti-Pattern: "This Module Is Simple, I Can Skip the Draft Confirmation"
+
+Every module goes through this process. Skipping the draft confirmation just defers disagreements to the implementation phase, where the cost of rework is much higher. The spec can be short, but it must be written through discussion and confirmed by the user — you cannot assume requirement details.
+
+**"The user probably knows what I'm building" is not the same as "the user has confirmed this spec."**
 
 ## Processing Order
 
@@ -28,11 +36,15 @@ Do not call splitting-specs until the user confirms all specs. Each module's spe
 Declare the current module and briefly recap its definition from the module description document:
 > "Beginning spec brainstorming for module '<name>'. Per the module description document, this module's responsibilities are <...>, external interfaces include <...>."
 
+**On internal details mentioned in modules.md:**
+
+modules.md focuses on boundaries and interfaces, but sometimes lightly mentions internal implementation directions (e.g., data structure names, storage approach, internal layering). These are **not constraints** — the spec phase starts from scratch on internal design. Any conclusion reached here is valid as long as it doesn't conflict with the **boundaries and external interfaces** defined in modules.md. Do not treat internal details from modules.md as settled conclusions and skip the corresponding discussion.
+
 ### Step 2: Ask Clarifying Questions One at a Time
 
 **Rules:**
 - Ask only one question at a time; wait for the user's answer before asking the next
-- Prefer providing options to reduce the user's cognitive load
+- For each question, offer 3-5 concrete options and briefly explain the core tradeoff of each, helping the user make an informed choice rather than just picking a name
 - When structure or relationships need illustration, use ASCII trees, ASCII block diagrams, or mermaid/dot syntax
 
 **Cover the following dimensions (choose applicable ones based on module nature):**
@@ -69,7 +81,33 @@ Present in segments; confirm each before continuing:
 3. **Error handling strategy** — How each type of error is handled
 4. **Iteration plan** — Core's minimal set scope, plus the feature boundaries and ordering of each update phase
 
-### Step 4: Write the Spec File
+### Step 4: Draft Confirmation
+
+After presenting all design proposals, **before writing the formal spec file**, follow these steps:
+
+1. Write the discussion conclusions to `docs/drafts/YYYY-MM-DD-<module>-spec-draft.md`, listing each key point with a `- [ ]` checkbox:
+
+```markdown
+## Key Points Checklist
+
+- [ ] **Architecture overview**: <internal components>
+- [ ] **Exposed interfaces**: <interface definition summary>
+- [ ] **Dependent external interfaces**: <dependency summary>
+- [ ] **Error handling strategy**: <strategy>
+- [ ] **Iteration plan Core**: <feature list>
+- [ ] **Iteration plan Update N**: <feature list> (if applicable)
+```
+
+2. Ask the user to confirm one point at a time:
+   > "Please confirm the architecture overview: [content] — is this correct?"
+
+3. After the user confirms, change `- [ ]` to `- [x]`; if changes are requested, update the draft and re-confirm.
+
+4. Once all items are `- [x]`, ask the user:
+   > "All key points have been confirmed. May I proceed to write the formal spec file?"
+   Wait for explicit user approval before proceeding to Step 5.
+
+### Step 5: Write the Spec File
 
 File path: `docs/specs/YYYY-MM-DD-<module>-spec.md`
 
@@ -184,7 +222,7 @@ File path: `docs/specs/YYYY-MM-DD-<module>-spec.md`
 
 **Diagrams NOT placed in spec:** Sequence diagrams (cross-module interaction), component diagrams, deployment diagrams — these belong in modules.md.
 
-### Step 5: Dispatch Review Subagent
+### Step 6: Dispatch Review Subagent
 
 Use the template in `spec-reviewer-prompt.md` to dispatch a review subagent (standard model), providing:
 - Spec file path
@@ -217,7 +255,7 @@ Once all specs are confirmed, I will proceed to the next phase.
 
 On modification requests: Modify the corresponding spec → Re-confirm with the user → Continue waiting for other specs' confirmation.
 
-After all confirmed: Call `my-powers:splitting-specs`.
+After all confirmed: invoke the splitting-specs sub-skill — read `splitting-specs/SKILL.md`.
 
 ## Red Flags
 
@@ -228,3 +266,6 @@ After all confirmed: Call `my-powers:splitting-specs`.
 - Commit a spec before the review subagent passes
 - Submit without re-review after issues are found
 - Pass review with Update phases that have dependency ordering issues uncorrected
+- Skip the draft confirmation flow and write the formal spec directly
+- Start writing the formal spec without user approval even after all key points are confirmed
+- Treat internal implementation hints in modules.md as settled conclusions and skip the corresponding discussion

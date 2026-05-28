@@ -1,8 +1,14 @@
 # my-powers
 
+**版本：** 0.1.1
+
 [English](README.md)
 
 面向 AI 编程智能体的多模块软件开发方法论技能集。
+
+> **已测试环境：** Claude Code + Claude Sonnet 4.6 / Deepseek V4 Pro / Kimi 2.6。其他智能体或模型下的表现未经测试。
+
+> **说明：** 本项目可能会随实际使用体验不定期更新，详见 [CHANGELOG](CHANGELOG.md)。
 
 my-powers 深受 Jesse Vincent 的 [superpowers](https://github.com/obra/superpowers) 启发。核心理念——将技能作为可组合的流程文档、由子智能体驱动的两阶段审查实现、TDD 作为强制性要求、完成声明前必须提供证据——均直接来源于该项目。my-powers 在此基础上进行了适配与扩展，专为以多模块系统设计为核心的工作流程而构建。
 

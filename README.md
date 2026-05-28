@@ -1,8 +1,14 @@
 # my-powers
 
+**Version:** 0.1.1
+
 [中文](README.zh.md)
 
 A multi-module software development methodology skill for AI coding agents.
+
+> **Tested environments:** Claude Code + Claude Sonnet 4.6 / Deepseek V4 Pro / Kimi 2.6. Behavior on other agents or models is untested.
+
+> **Note:** This project might be updated occasionally based on real usage experience. See [CHANGELOG](CHANGELOG.md) for what changed.
 
 my-powers is deeply inspired by [superpowers](https://github.com/obra/superpowers) by Jesse Vincent. The core philosophy—skills as composable process documentation, subagent-driven implementation with two-stage review, TDD as a hard requirement, evidence before completion claims—comes directly from that project. my-powers adapts and extends that foundation for workflows centered on multi-module system design.
 

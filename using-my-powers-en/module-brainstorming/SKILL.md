@@ -9,9 +9,17 @@ Decompose the system into modules with clear boundaries that are relatively inde
 
 **Declaration:** 「I am using my-powers:module-brainstorming」
 
+**Task tracking:** Use TaskCreate to create a task for each item in the checklist. Complete them in order and mark each done with TaskUpdate.
+
 <HARD-GATE>
 Do not enter writing-module-specs until the user confirms the module description document. Do not begin writing specs when module boundaries are fuzzy and interfaces are undefined.
 </HARD-GATE>
+
+## Anti-Pattern: "This System Doesn't Need Decomposition"
+
+Every system goes through this process. Systems that "seem simple" are exactly where unexamined assumptions cause wasted effort downstream. The decomposition discussion can be short — for a genuinely simple system, the valid conclusion is "one module" — but you must complete the discussion and get user confirmation. "The system is simple" is not a reason to skip the process.
+
+**"One module" is a valid conclusion reached through discussion, not a reason to skip discussion.**
 
 ## Checklist
 
@@ -21,14 +29,15 @@ Complete each item in order:
 2. **Discuss system decomposition** — Ask questions one at a time, identify the system's main components
 3. **Identify tight coupling zones** — Don't decompose tightly coupled areas; keep them as one module
 4. **Define leaf modules** — For each finest-granularity module, define responsibilities, boundaries, interfaces
-5. **Write module description document** — Save to `docs/YYYY-MM-DD-modules.md`, commit to git
-6. **Wait for user confirmation** — Call writing-module-specs once there are no objections
+5. **Collect reference materials** — Check whether the working directory has project infrastructure; check whether the user mentioned any reference materials. If so, dispatch a subagent with the initial module breakdown to report the relevant files or directories per module. If not, record "no reference materials" and continue
+6. **Write module description document** — First write `docs/drafts/YYYY-MM-DD-modules-draft.md`, confirm each key point, then write the formal document to `docs/YYYY-MM-DD-modules.md`, commit to git
+7. **Wait for user confirmation** — Call writing-module-specs once there are no objections
 
 ## Discussing System Decomposition
 
 **Questioning approach:**
 - Ask only one question at a time
-- Prefer providing options (server/client? frontend/backend separate or monolithic?)
+- For each question, offer 3-5 concrete options and briefly explain the core tradeoff of each, helping the user make an informed choice rather than just picking a name. Example: frontend/backend separate — clear interface boundaries, independent iteration, but requires maintaining an API contract; monolithic — less development friction, shared types, but boundaries tend to blur as the system grows
 - Go from high-level to detail; don't start with details
 
 **Decomposition dimensions (choose applicable ones based on system type):**
@@ -42,6 +51,7 @@ Complete each item in order:
 - Decomposition is hierarchical — find top-level boundaries first, then refine downward
 - Don't force decomposition of tight coupling: if two parts' interfaces change frequently with each other's internal implementation, they should be one module
 - Leaf module criteria: given the boundary and interface contract, internal changes don't affect external callers
+- Leaf modules may have internal sub-modules (internal organization details; no separate spec or task file required) — this is fine
 - **If the system is simple enough to be a single module with no meaningful split, that is a valid conclusion — accept it; don't decompose for the sake of decomposing**
 
 **Identifying tight coupling:**
@@ -70,6 +80,30 @@ For each leaf module, clarify the following:
 - List the call direction (A calls B, not B calls A)
 - Circular dependencies signal boundary definition problems
 
+**Dependencies on existing implementations:**
+- List existing code, libraries, services, or external systems this module will directly reuse or wrap
+- Specify the dependency style: direct call / wrapped and re-exposed / used as underlying driver
+- If the module itself is an encapsulation layer over existing implementations, state clearly what is being wrapped and what interfaces are exposed
+- If there are no existing implementation dependencies, write "None"
+
+## Collecting Reference Materials Before Writing the Draft
+
+After discussion is complete and before entering the draft writing phase, perform the following check:
+
+**Trigger conditions (either one is sufficient):**
+- The current working directory contains project code, config files, documentation, or other infrastructure
+- The user mentioned reference materials during the conversation (codebases, docs, design files, etc.)
+
+**When reference materials exist:** Use the template in `reference-collector-prompt.md` to dispatch an Explore subagent, providing:
+- Initial module breakdown (list of module names)
+- Directories or files to investigate
+
+After the subagent completes, attach the reference material mapping to the draft for use in the spec phase. If additional notes touch on module decomposition, discuss with the user and adjust module definitions if needed.
+
+**When no reference materials exist:** Record "no project infrastructure, no reference materials" and proceed directly to the draft confirmation flow.
+
+---
+
 ## Module Description Document Structure
 
 Save to `docs/YYYY-MM-DD-modules.md`:
@@ -82,12 +116,14 @@ Save to `docs/YYYY-MM-DD-modules.md`:
 
 ## Module Tree
 
-<Hierarchical list, use indentation for hierarchy, mark leaf nodes with *>
+<Hierarchical list, use indentation for hierarchy, mark leaf nodes with *; leaf nodes may have sub-modules>
 
 Example:
 - Frontend
   - Router layer *
-  - Component layer *
+  - Component layer * (leaf modules may have sub-modules; sub-modules don't need their own spec)
+    - Form components
+    - List components
   - State management layer *
 - Backend
   - API layer *
@@ -106,6 +142,8 @@ Example:
 <Interface description, including protocol/format/main method signatures>
 
 **Dependencies:** <List, or "None">
+
+**Dependencies on existing implementations:** <library/service/code path + dependency style, or "None">
 
 ---
 (One section per leaf module)
@@ -155,6 +193,43 @@ Example:
 
 **Diagrams NOT placed in modules.md:** ER diagrams, class diagrams, state machine diagrams, activity diagrams, data flow diagrams — these describe internal module details and belong in each module's spec.
 
+## Draft Confirmation Flow
+
+After the user answers all questions, **before writing any formal document**, follow these steps:
+
+### Step 1: Write the draft
+
+Write the discussion results to `docs/drafts/YYYY-MM-DD-modules-draft.md`, listing each key point with a `- [ ]` checkbox:
+
+```markdown
+# System Module Description (Draft — Pending Confirmation)
+
+## Key Points Checklist
+
+- [ ] **Module tree structure**: [complete module tree]
+- [ ] **<Module A> definition**: Responsibilities: ...; Boundaries: ...; Interfaces: ...
+- [ ] **<Module B> definition**: Responsibilities: ...; Boundaries: ...; Interfaces: ...
+- [ ] **Inter-module dependencies**: ...
+```
+
+One line per leaf module, summarizing responsibilities, boundaries, and interfaces.
+
+### Step 2: Confirm one point at a time
+
+Ask the user to confirm one point per message:
+> "Please confirm the module tree structure: [content] — is this correct?"
+
+After the user confirms, change the corresponding `- [ ]` to `- [x]`.  
+If the user requests a change, update the draft and re-confirm that item before moving on.
+
+### Step 3: Request to proceed after all points confirmed
+
+Once all items are `- [x]`, ask the user:
+
+> "All key points have been confirmed. May I proceed to write the formal module description document `docs/YYYY-MM-DD-modules.md`?"
+
+Wait for explicit user approval before writing the formal document and committing to git.
+
 ## Dispatch Review Subagent
 
 After self-check passes, use the template in `modules-reviewer-prompt.md` to dispatch a review subagent (standard model), providing:
@@ -172,7 +247,7 @@ After writing the document, inform the user:
 
 Wait for explicit user confirmation. For any modification requests, modify and re-confirm; do not skip.
 
-After confirmation: Call `my-powers:writing-module-specs`.
+After confirmation: invoke the writing-module-specs sub-skill — read `writing-module-specs/SKILL.md`.
 
 ## Red Flags
 
@@ -185,3 +260,6 @@ After confirmation: Call `my-powers:writing-module-specs`.
 - Ask multiple questions in a single message
 - Enter user confirmation gate before review subagent passes
 - Continue without re-review after issues are found
+- Skip the draft confirmation flow and write the formal module description document directly
+- Skip the reference material collection step when project infrastructure exists or user mentioned reference materials
+- Start writing the formal document without user approval even after all key points are confirmed

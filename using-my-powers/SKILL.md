@@ -77,9 +77,9 @@ docs/
 - 声称完成之前 → 直接用 `verification-before-completion`
 - 收到代码审查 → 直接用 `receiving-code-review`
 
-## 各技能位置
+## 子技能结构与调用方式
 
-所有子技能均位于本文件所在目录（`using-my-powers/`）下：
+所有子技能均位于本文件所在目录（`using-my-powers/`）下，每个子技能对应一个 `SKILL.md` 文件：
 
 ```
 using-my-powers/SKILL.md                        ← 入口（本文件）
@@ -96,3 +96,5 @@ using-my-powers/systematic-debugging/SKILL.md           ← 遇到 bug 或非预
 using-my-powers/verification-before-completion/SKILL.md ← 声称完成之前
 using-my-powers/receiving-code-review/SKILL.md          ← 收到 PR 审查反馈时
 ```
+
+**调用子技能的方式：** 流程中出现「调用 X 子技能 — 读取 `X/SKILL.md` 技能文件」时，直接用 Read 工具读取该路径的文件并按其内容执行，无需通过技能名称调用。

@@ -75,7 +75,7 @@ Inform the user; no task files to generate.
 3. Order by dependency (depended-on modules first)
 4. Execute the "Single Module Task Division Process" serially for each module
 5. After all task files complete, list files for user review
-6. After user confirmation, call `my-powers:writing-plans`
+6. After user confirmation, invoke the writing-plans sub-skill — read `writing-plans/SKILL.md`
 
 ## Single Module Task Division Process
 
@@ -234,7 +234,7 @@ Once all task files are confirmed, I will begin writing plan documents in parall
 
 Wait for user confirmation. On modifications: Modify corresponding file → Re-confirm with user → Continue waiting for other file confirmations.
 
-After all confirmed: Call `my-powers:writing-plans`
+After all confirmed: invoke the writing-plans sub-skill — read `writing-plans/SKILL.md`
 
 ## Red Flags
 

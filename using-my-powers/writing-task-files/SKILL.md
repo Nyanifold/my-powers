@@ -75,7 +75,7 @@ git tag | sort
 3. 按依赖顺序排列（被依赖的板块先做）
 4. 串行为每个板块执行「单板块任务划分流程」
 5. 所有任务文件完成后，列出文件清单，请用户审阅
-6. 用户确认后，调用 `my-powers:writing-plans`
+6. 用户确认后，调用 writing-plans 子技能 — 读取 `writing-plans/SKILL.md` 技能文件
 
 ## 单板块任务划分流程
 
@@ -234,7 +234,7 @@ Mock 的外部依赖：
 
 等待用户确认。有修改时：修改对应文件 → 重新请用户确认 → 继续等待其余文件确认。
 
-全部确认后：调用 `my-powers:writing-plans`
+全部确认后：调用 writing-plans 子技能 — 读取 `writing-plans/SKILL.md` 技能文件
 
 ## Red Flags
 

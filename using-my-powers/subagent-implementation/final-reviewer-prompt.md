@@ -75,5 +75,5 @@ Agent（general-purpose）:
 **审查者返回：** 全局状态 + 分类问题列表
 
 **后续处理：**
-- ✅ 通过 → 调用 `my-powers:finishing-a-module`
+- ✅ 通过 → 调用 finishing-a-module 子技能 — 读取 `finishing-a-module/SKILL.md` 技能文件
 - ❌ 发现问题 → 协调者评估影响范围，决定修复策略（定点修复 / 重新实现某阶段），修复后重新派发全局审查

@@ -203,7 +203,7 @@ HEAD_SHA=$(git rev-parse HEAD)
 - 是否有跨阶段引入的一致性问题？
 - 所有演示是否可运行？
 
-审查通过后，调用 `my-powers:finishing-a-module`
+审查通过后，调用 finishing-a-module 子技能 — 读取 `finishing-a-module/SKILL.md` 技能文件
 
 ## 连续执行规范
 

@@ -59,7 +59,7 @@ After all modules' checker subagents pass:
 - List all generated files
 - Confirm every module passed the check
 
-After summarization: Call `my-powers:writing-task-files`
+After summarization: invoke the writing-task-files sub-skill — read `writing-task-files/SKILL.md`
 
 ---
 

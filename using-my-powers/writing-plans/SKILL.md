@@ -74,7 +74,7 @@ description: "用户确认所有任务文件后使用。并行唤起子智能体
 所有计划已通过子智能体自审。请确认是否开始实现阶段。
 ```
 
-用户确认后，调用 `my-powers:subagent-implementation`
+用户确认后，调用 subagent-implementation 子技能 — 读取 `subagent-implementation/SKILL.md` 技能文件
 
 ---
 
