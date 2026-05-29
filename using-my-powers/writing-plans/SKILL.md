@@ -26,7 +26,7 @@ description: "用户确认所有任务文件后使用。并行唤起子智能体
 
 ```
 <module-1>
-  └─ Stage 1 → docs/tasks/YYYY-MM-DD-<module-1>-tasks.md § Stage 1
+  └─ Stage 1 → docs/my-powers-output/tasks/YYYY-MM-DD-<module-1>-tasks.md § Stage 1
   └─ Stage 2 → ...
 <module-2>
   └─ Stage 1 → ...
@@ -53,7 +53,18 @@ description: "用户确认所有任务文件后使用。并行唤起子智能体
 - 多文件集成、需要判断设计意图的阶段：使用标准模型
 - 跨板块接口、架构决策相关的阶段：使用最强模型
 
-### 第 3 步：子智能体审查
+### 第 3 步：自审
+
+所有计划文档生成后，逐份检查以下要点，发现问题直接修改，无需记录：
+
+- [ ] 每个实现步骤有具体操作描述（非"实现功能 X"一类的空洞描述）
+- [ ] 测试伪代码覆盖了主要行为和边界情况
+- [ ] 演示方案与对应 tasks 文件中的描述一致
+- [ ] 无跨阶段遗漏（上一阶段的成果在本阶段有明确的承接点）
+
+所有条目通过后，再派发审查子智能体。
+
+### 第 4 步：子智能体审查
 
 所有计划文档生成后，派发审查子智能体（最强模型），对照对应的 spec 和 tasks 逐一审查：
 - 计划是否覆盖了该阶段所有预期成果？
@@ -62,13 +73,13 @@ description: "用户确认所有任务文件后使用。并行唤起子智能体
 
 审查发现问题 → 对应计划文档修改 → 重新审查，直到通过。
 
-### 第 4 步：列出结果，等待用户确认
+### 第 5 步：列出结果，等待用户确认
 
 ```
 所有计划文档已生成完毕：
 
-- docs/plans/YYYY-MM-DD-<module-1>-task-1-plan.md
-- docs/plans/YYYY-MM-DD-<module-1>-task-2-plan.md
+- docs/my-powers-output/plans/YYYY-MM-DD-<module-1>-task-1-plan.md
+- docs/my-powers-output/plans/YYYY-MM-DD-<module-1>-task-2-plan.md
 - ...
 
 所有计划已通过子智能体自审。请确认是否开始实现阶段。
@@ -87,9 +98,9 @@ description: "用户确认所有任务文件后使用。并行唤起子智能体
 **输入信息（由协调者提供，不需要自行搜索文件）：**
 
 对应 spec 文件路径：
-- `docs/specs/YYYY-MM-DD-<module>-spec.md`
-- `docs/specs/YYYY-MM-DD-<module>-spec-core.md`（若本阶段属于 Core 范围）
-- `docs/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`（若本阶段属于某 Update 阶段）
+- `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
+- `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-core.md`（若本阶段属于 Core 范围）
+- `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`（若本阶段属于某 Update 阶段）
 
 以下是该阶段的任务说明（摘自 tasks 文件）：
 
@@ -97,7 +108,7 @@ description: "用户确认所有任务文件后使用。并行唤起子智能体
 <协调者从 tasks 文件中提取的该阶段完整文本，粘贴在此>
 ```
 
-**输出文件：** `docs/plans/YYYY-MM-DD-<module>-task-<N>-plan.md`
+**输出文件：** `docs/my-powers-output/plans/YYYY-MM-DD-<module>-task-<N>-plan.md`
 
 ### 计划文档结构
 
@@ -105,7 +116,7 @@ description: "用户确认所有任务文件后使用。并行唤起子智能体
 # <板块名> Stage <N>：<阶段名称> 计划
 
 > 生成日期：YYYY-MM-DD
-> 对应 spec：docs/specs/YYYY-MM-DD-<module>-spec.md
+> 对应 spec：docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md
 > 对应 tasks 阶段：Stage <N>
 
 ## 目标与范围
@@ -193,7 +204,7 @@ then <预期结果>
 - [ ] 演示文件存在且能按「运行演示」中的命令正确运行
 - [ ] Mock 接口与 tasks 文件中声明的 Mock 行为一致
 - [ ] 没有引入 tasks 文件范围之外的功能（不过度实现）
-- [ ] 实现报告已写入 `docs/reports/YYYY-MM-DD-<module>-task-<N>-report.md`
+- [ ] 实现报告已写入 `docs/my-powers-output/reports/YYYY-MM-DD-<module>-task-<N>-report.md`
 ```
 
 ### 完成后上报

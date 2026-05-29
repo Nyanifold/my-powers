@@ -61,10 +61,11 @@ Agent（general-purpose）:
     **状态：** ✅ 通过 | ❌ 发现问题
 
     **Critical 问题（如有）：**
-    - [file:line] [具体问题]
+    - [<维度名>] [file:line] [具体问题]
 
     **Important 问题（如有）：**
-    - [file:line] [具体问题]
+    - [<维度名>] [file:line] [具体问题]
+    （维度名取自审查维度：代码结构 / 测试质量 / 代码质量 / 可维护性）
 
     **Minor 建议（不阻断）：**
     - [具体建议]

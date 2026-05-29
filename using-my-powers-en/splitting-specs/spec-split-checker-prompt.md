@@ -15,11 +15,11 @@ Agent (general-purpose):
     and disjointness (no feature appears in the implementation scope of more than one phase file).
 
     **Input files (read directly):**
-    - Original spec: `docs/specs/YYYY-MM-DD-<module>-spec.md`
-    - Core phase file: `docs/specs/YYYY-MM-DD-<module>-spec-core.md`
+    - Original spec: `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
+    - Core phase file: `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-core.md`
     - Update phase files (listed by coordinator):
-      - `docs/specs/YYYY-MM-DD-<module>-spec-update-1-<feature>.md` (if present)
-      - `docs/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md` (if present)
+      - `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-1-<feature>.md` (if present)
+      - `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md` (if present)
 
     **Do not modify any files.**
 
@@ -51,6 +51,8 @@ Agent (general-purpose):
     Compare the coverage sets of all phase file pairs. Find any items that appear in the implementation scope of more than one phase file (duplicate features).
 
     ## Report Format
+
+    (The problem type for each entry is declared by its section header: Completeness Issue / Disjointness Issue)
 
     ```
     Status: PASS | FAIL

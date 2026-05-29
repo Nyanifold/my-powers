@@ -71,7 +71,7 @@ Inform the user; no task files to generate.
 ## Execution Flow
 
 1. Execute Step 0, confirm target phase scope
-2. Read `docs/YYYY-MM-DD-modules.md`, get leaf module list (exclude TODO modules)
+2. Read `docs/my-powers-output/YYYY-MM-DD-modules.md`, get leaf module list (exclude TODO modules)
 3. Order by dependency (depended-on modules first)
 4. Execute the "Single Module Task Division Process" serially for each module
 5. After all task files complete, list files for user review
@@ -81,10 +81,10 @@ Inform the user; no task files to generate.
 
 ### Read Input Files
 
-- `docs/specs/YYYY-MM-DD-<module>-spec.md` (original spec)
-- `docs/specs/YYYY-MM-DD-<module>-spec-core.md` (Core phase scope)
-- `docs/specs/YYYY-MM-DD-<module>-spec-update-1-<feature>.md` (Update 1, if in target scope)
-- `docs/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md` (further Updates, if in target scope)
+- `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md` (original spec)
+- `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-core.md` (Core phase scope)
+- `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-1-<feature>.md` (Update 1, if in target scope)
+- `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md` (further Updates, if in target scope)
 
 ### Divide Stages
 
@@ -116,13 +116,13 @@ Features not in the target scope: no stages, no demos, no plans. Task files only
 
 ### Write Task File
 
-File path: `docs/tasks/YYYY-MM-DD-<module>-tasks.md`
+File path: `docs/my-powers-output/tasks/YYYY-MM-DD-<module>-tasks.md`
 
 ```markdown
 # <module-name> Task File
 
 > Generated: YYYY-MM-DD
-> Corresponding spec: docs/specs/YYYY-MM-DD-<module>-spec.md
+> Corresponding spec: docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md
 
 ## Stage Overview
 
@@ -204,9 +204,20 @@ Expected output:
 (Same format as above; note in "Corresponding spec scope" that it comes from spec-update-M-<feature>)
 ```
 
+### Self-Review
+
+After writing the task file, check the following items and fix issues inline — no need to record them:
+
+- [ ] Every stage has an independently demonstrable outcome (not vague descriptions like "run the program and check results")
+- [ ] Stage dependency ordering is correct (depended-on stages come first)
+- [ ] Each stage's review checklist covers all expected outcomes for that stage
+- [ ] Demo steps are concrete and executable
+
+Proceed to dispatching the review subagent only after all items pass.
+
 ### Dispatch Review Subagent
 
-After self-check passes, use the template in `task-file-reviewer-prompt.md` to dispatch a review subagent (standard model), providing:
+Use the template in `task-file-reviewer-prompt.md` to dispatch a review subagent (standard model), providing:
 - Task file path
 - Corresponding spec file paths (original spec, spec-core, spec-update-N-* files involved in this iteration)
 - Target phase list for this iteration (from Step 0 confirmation)
@@ -220,8 +231,8 @@ Review results:
 ```
 All module task files generated:
 
-- docs/tasks/YYYY-MM-DD-<module-1>-tasks.md
-- docs/tasks/YYYY-MM-DD-<module-2>-tasks.md
+- docs/my-powers-output/tasks/YYYY-MM-DD-<module-1>-tasks.md
+- docs/my-powers-output/tasks/YYYY-MM-DD-<module-2>-tasks.md
 - ...
 
 Please review each task file, focusing on:

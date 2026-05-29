@@ -33,7 +33,7 @@ BRANCH=$(git branch --show-current)
 
 ```
 [板块名] Stage N — <阶段名称>
-  计划文件: docs/plans/YYYY-MM-DD-<module>-task-N-plan.md
+  计划文件: docs/my-powers-output/plans/YYYY-MM-DD-<module>-task-N-plan.md
   前置依赖: [列表]
   状态: 待执行
 ```
@@ -79,6 +79,16 @@ BRANCH=$(git branch --show-current)
 4. 计划本身有问题 → 升级给用户决定
 
 **绝不**忽略 BLOCKED 或用相同配置强行重试。
+
+### 协调者自审（审查前）
+
+收到实现子智能体的 DONE 报告后，在派发任何审查子智能体前，协调者快速检查：
+
+- [ ] 实现子智能体已完成自检（第 5 步）且状态为 DONE
+- [ ] git diff 范围与该阶段预期成果一致（无明显遗漏，无明显范围外实现）
+- [ ] 新增文件/函数命名与 spec 约定一致
+
+发现明显问题直接反馈给实现子智能体修复，再继续派发审查。
 
 ### 审查阶段一：Spec 符合审查
 
@@ -127,13 +137,13 @@ HEAD_SHA=$(git rev-parse HEAD)
 
 两阶段审查均通过后，实现子智能体（或协调者）写实现报告：
 
-文件路径：`docs/reports/YYYY-MM-DD-<module>-task-<N>-report.md`
+文件路径：`docs/my-powers-output/reports/YYYY-MM-DD-<module>-task-<N>-report.md`
 
 ```markdown
 # <板块名> Stage <N> 实现报告
 
 > 生成日期：YYYY-MM-DD
-> 对应计划：docs/plans/YYYY-MM-DD-<module>-task-<N>-plan.md
+> 对应计划：docs/my-powers-output/plans/YYYY-MM-DD-<module>-task-<N>-plan.md
 
 ## 变更摘要
 
@@ -195,6 +205,16 @@ HEAD_SHA=$(git rev-parse HEAD)
 
 ## 第 3 步：全局最终审查
 
+### 协调者自审（全局审查前）
+
+所有任务阶段完成后，在派发最终审查子智能体前，协调者检查：
+
+- [ ] 所有任务阶段均已标记完成（无 BLOCKED/PARTIAL 遗留）
+- [ ] 各板块接口实现与 modules.md 中的定义无明显出入
+- [ ] 演示脚本/命令已全部就绪，可实际运行
+
+发现问题直接修复，再派发全局审查子智能体。
+
 所有任务阶段完成后，派发最终代码审查子智能体（最强模型），对整个实现进行全局审查：
 
 **全局审查维度：**
@@ -228,8 +248,8 @@ HEAD_SHA=$(git rev-parse HEAD)
 板块「<module-name>」Stage <N>：<阶段名称>
 
 **输入文件路径（读取这些文件获取详情）：**
-- spec：`docs/specs/YYYY-MM-DD-<module>-spec.md`
-- 计划：`docs/plans/YYYY-MM-DD-<module>-task-<N>-plan.md`
+- spec：`docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
+- 计划：`docs/my-powers-output/plans/YYYY-MM-DD-<module>-task-<N>-plan.md`
 
 **以下是本阶段的任务说明（摘自 tasks 文件，协调者已提取）：**
 ```
@@ -250,7 +270,7 @@ HEAD_SHA=$(git rev-parse HEAD)
 - 跳过"确认测试失败"这一步
 - "这个很简单，不需要测试"
 
-**遇到 bug 时：** 遵循系统化调试流程——先确认复现、再找根因、再修复、再验证。修复通过后在 `docs/reports/` 写 bugfix 记录：`YYYY-MM-DD-<module>-task-<N>-bugfix.md`（同一 stage 多个 bug 则加序号：`-bugfix-1.md`、`-bugfix-2.md`）。
+**遇到 bug 时：** 遵循系统化调试流程——先确认复现、再找根因、再修复、再验证。修复通过后在 `docs/my-powers-output/reports/` 写 bugfix 记录：`YYYY-MM-DD-<module>-task-<N>-bugfix.md`（同一 stage 多个 bug 则加序号：`-bugfix-1.md`、`-bugfix-2.md`）。
 
 **验证先于声明：** 没有运行过测试命令，不得说"测试通过"；没有运行过演示命令，不得说"演示可用"。
 

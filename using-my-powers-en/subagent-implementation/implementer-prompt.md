@@ -24,8 +24,8 @@ Agent (general-purpose):
     **Current git branch:** `<branch-name>`
 
     **Input file paths (read these files for details):**
-    - spec: `docs/specs/YYYY-MM-DD-<module>-spec.md`
-    - plan: `docs/plans/YYYY-MM-DD-<module>-task-<N>-plan.md`
+    - spec: `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
+    - plan: `docs/my-powers-output/plans/YYYY-MM-DD-<module>-task-<N>-plan.md`
 
     **Below is the task description for this stage (extracted from tasks file; coordinator has already extracted it):**
     ```
@@ -76,7 +76,7 @@ Agent (general-purpose):
     ## When Encountering Bugs
 
     Follow the systematic debugging process: confirm reproduction, find root cause, fix, verify.
-    After the fix passes, write a bugfix record in `docs/reports/`:
+    After the fix passes, write a bugfix record in `docs/my-powers-output/reports/`:
     `YYYY-MM-DD-<module>-task-<N>-bugfix.md`
     (If multiple bugs in the same stage, number sequentially: `-bugfix-1.md`, `-bugfix-2.md`)
 

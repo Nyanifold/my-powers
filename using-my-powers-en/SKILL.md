@@ -38,7 +38,7 @@ finishing-a-module          ← Verification, wrap-up, merge or PR
 All intermediate files use a date prefix `YYYY-MM-DD-`.
 
 ```
-docs/
+docs/my-powers-output/
 ├── YYYY-MM-DD-modules.md                             # Module description document
 ├── specs/
 │   ├── YYYY-MM-DD-<module>-spec.md                       # Original spec (main agent)

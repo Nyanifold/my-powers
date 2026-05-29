@@ -13,10 +13,10 @@ Generate iteration phase spec files for each module in parallel: `spec-core.md` 
 
 ### Step 1: Prepare Task List
 
-Read `docs/YYYY-MM-DD-modules.md`, extract all leaf module list (excluding modules marked as leave it TODO).
+Read `docs/my-powers-output/YYYY-MM-DD-modules.md`, extract all leaf module list (excluding modules marked as leave it TODO).
 
 For each module, confirm the corresponding original spec file exists:
-`docs/specs/YYYY-MM-DD-<module>-spec.md`
+`docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
 
 Read the "Iteration Plan" section of each spec and record each module's phase structure:
 - Core phase (always present)
@@ -70,7 +70,7 @@ After summarization: invoke the writing-task-files sub-skill — read `writing-t
 Your task is to generate iteration phase diff files for module "<module-name>", extracting and describing each phase's content scope from the original spec.
 
 **Input file:**
-- Original spec: `docs/specs/YYYY-MM-DD-<module>-spec.md`
+- Original spec: `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
 
 **This module's iteration phases:**
 - Core: <minimal runnable set name>
@@ -78,9 +78,9 @@ Your task is to generate iteration phase diff files for module "<module-name>", 
 - Update N: <feature-name> (if present)
 
 **Output files:**
-- `docs/specs/YYYY-MM-DD-<module>-spec-core.md`
-- `docs/specs/YYYY-MM-DD-<module>-spec-update-1-<feature>.md` (if Update 1 exists)
-- `docs/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md` (if more Updates exist)
+- `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-core.md`
+- `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-1-<feature>.md` (if Update 1 exists)
+- `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md` (if more Updates exist)
 
 **The original spec remains unchanged. Do not modify it.**
 
@@ -91,7 +91,7 @@ Describe the Core phase implementation scope. Structure:
 ```markdown
 # <module-name> Core Spec
 
-> This file describes the Core phase scope of `docs/specs/YYYY-MM-DD-<module>-spec.md`.
+> This file describes the Core phase scope of `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`.
 > Complete interface definitions are in the original spec; this file only describes what the Core phase implements.
 
 ## Core Phase Implementation Scope

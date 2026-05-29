@@ -15,11 +15,11 @@ Agent（general-purpose）:
     与不交性（任意两个阶段文件的实现范围不包含相同条目）。
 
     **输入文件（直接读取）：**
-    - 原始 spec：`docs/specs/YYYY-MM-DD-<module>-spec.md`
-    - Core 阶段文件：`docs/specs/YYYY-MM-DD-<module>-spec-core.md`
+    - 原始 spec：`docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
+    - Core 阶段文件：`docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-core.md`
     - Update 阶段文件（由协调者列出）：
-      - `docs/specs/YYYY-MM-DD-<module>-spec-update-1-<feature>.md`（如有）
-      - `docs/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`（如有）
+      - `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-1-<feature>.md`（如有）
+      - `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`（如有）
 
     **不修改任何文件。**
 
@@ -51,6 +51,8 @@ Agent（general-purpose）:
     对所有阶段文件两两比较各自的覆盖集，找出同时出现在多个阶段文件「实现范围」中的条目（重复功能）。
 
     ## 上报格式
+
+    （每个问题条目的问题类型由其所在章节标题声明：完全性问题 / 不交性问题）
 
     ```
     状态：PASS | FAIL

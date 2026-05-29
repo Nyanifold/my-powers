@@ -26,7 +26,7 @@ Read all task files, build the complete task matrix:
 
 ```
 <module-1>
-  └─ Stage 1 → docs/tasks/YYYY-MM-DD-<module-1>-tasks.md § Stage 1
+  └─ Stage 1 → docs/my-powers-output/tasks/YYYY-MM-DD-<module-1>-tasks.md § Stage 1
   └─ Stage 2 → ...
 <module-2>
   └─ Stage 1 → ...
@@ -53,7 +53,18 @@ Count total tasks, declare: "N tasks total; will dispatch subagents in parallel 
 - Multi-file integration, stages requiring design intent judgment: use standard model
 - Cross-module interface, architecture decision stages: use most capable model
 
-### Step 3: Subagent Review
+### Step 3: Self-Review
+
+After all plan documents are generated, check each one against the following items and fix issues inline — no need to record them:
+
+- [ ] Every implementation step has a concrete action description (not hollow descriptions like "implement feature X")
+- [ ] Test pseudocode covers main behaviors and edge cases
+- [ ] Demo plan matches the description in the corresponding tasks file
+- [ ] No cross-stage gaps (outcomes from the previous stage have a clear handoff point in this stage)
+
+Proceed to dispatching the review subagent only after all items pass.
+
+### Step 4: Subagent Review
 
 After all plan documents are generated, dispatch a review subagent (most capable model) to review each against the corresponding spec and tasks:
 - Does the plan cover all expected deliverables for the stage?
@@ -62,13 +73,13 @@ After all plan documents are generated, dispatch a review subagent (most capable
 
 Issues found in review → Modify the corresponding plan document → Re-review until passing.
 
-### Step 4: List Results, Wait for User Confirmation
+### Step 5: List Results, Wait for User Confirmation
 
 ```
 All plan documents generated:
 
-- docs/plans/YYYY-MM-DD-<module-1>-task-1-plan.md
-- docs/plans/YYYY-MM-DD-<module-1>-task-2-plan.md
+- docs/my-powers-output/plans/YYYY-MM-DD-<module-1>-task-1-plan.md
+- docs/my-powers-output/plans/YYYY-MM-DD-<module-1>-task-2-plan.md
 - ...
 
 All plans have passed subagent self-review. Please confirm whether to begin the implementation phase.
@@ -87,9 +98,9 @@ Your task is to write a plan document for module "<module-name>" Stage <N> (<sta
 **Input information (provided by coordinator; no need to search for files yourself):**
 
 Corresponding spec file paths:
-- `docs/specs/YYYY-MM-DD-<module>-spec.md`
-- `docs/specs/YYYY-MM-DD-<module>-spec-core.md` (if this stage belongs to the Core scope)
-- `docs/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md` (if this stage belongs to an Update phase)
+- `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
+- `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-core.md` (if this stage belongs to the Core scope)
+- `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md` (if this stage belongs to an Update phase)
 
 Below is the task description for this stage (extracted from tasks file):
 
@@ -97,7 +108,7 @@ Below is the task description for this stage (extracted from tasks file):
 <Coordinator pastes the complete text of this stage from the tasks file here>
 ```
 
-**Output file:** `docs/plans/YYYY-MM-DD-<module>-task-<N>-plan.md`
+**Output file:** `docs/my-powers-output/plans/YYYY-MM-DD-<module>-task-<N>-plan.md`
 
 ### Plan Document Structure
 
@@ -105,7 +116,7 @@ Below is the task description for this stage (extracted from tasks file):
 # <module-name> Stage <N>: <stage-name> Plan
 
 > Generated: YYYY-MM-DD
-> Corresponding spec: docs/specs/YYYY-MM-DD-<module>-spec.md
+> Corresponding spec: docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md
 > Corresponding tasks stage: Stage <N>
 
 ## Goals and Scope
@@ -193,7 +204,7 @@ then <expected result>
 - [ ] Demo files exist and run correctly following the "Run demo" command
 - [ ] Mock interfaces match the mock behavior declared in the tasks file
 - [ ] No functionality beyond the tasks file scope has been introduced (no over-implementation)
-- [ ] Implementation report written to `docs/reports/YYYY-MM-DD-<module>-task-<N>-report.md`
+- [ ] Implementation report written to `docs/my-powers-output/reports/YYYY-MM-DD-<module>-task-<N>-report.md`
 ```
 
 ### Report on Completion

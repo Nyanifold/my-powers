@@ -62,10 +62,11 @@ Agent (general-purpose):
     **Status:** ✅ Pass | ❌ Issues Found
 
     **Critical issues (if any):**
-    - [file:line] [Specific issue]
+    - [<Dimension>] [file:line] [Specific issue]
 
     **Important issues (if any):**
-    - [file:line] [Specific issue]
+    - [<Dimension>] [file:line] [Specific issue]
+    (Dimension from the review dimensions: Code Structure / Test Quality / Code Quality / Maintainability)
 
     **Minor suggestions (non-blocking):**
     - [Specific suggestion]

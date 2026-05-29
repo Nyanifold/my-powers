@@ -16,7 +16,7 @@ Agent (general-purpose):
     is reasonable, boundaries are clear, interfaces are stable, and it is ready
     for the per-module spec writing phase.
 
-    **Document to review:** `docs/YYYY-MM-DD-modules.md`
+    **Document to review:** `docs/my-powers-output/YYYY-MM-DD-modules.md`
 
     ## Review Dimensions
 
@@ -43,7 +43,8 @@ Agent (general-purpose):
     **Status:** Approved | Issues Found
 
     **Issues (if any):**
-    - [Module name / Section X]: [Specific issue] — [Why it impacts spec writing or implementation]
+    - [<Dimension>] [Module name / Section X]: [Specific issue] — [Why it impacts spec writing or implementation]
+    (Dimension from the review table: Completeness / Circular Dependencies / Interface Stability / Responsibility Coverage / Tight Coupling / Boundary Clarity / Existing Implementation Dependencies)
 
     **Suggestions (non-blocking):**
     - [Improvement suggestion]

@@ -71,7 +71,7 @@ git tag | sort
 ## 执行流程
 
 1. 执行第 0 步，确认目标阶段范围
-2. 读取 `docs/YYYY-MM-DD-modules.md`，获取叶子板块列表（排除 TODO 板块）
+2. 读取 `docs/my-powers-output/YYYY-MM-DD-modules.md`，获取叶子板块列表（排除 TODO 板块）
 3. 按依赖顺序排列（被依赖的板块先做）
 4. 串行为每个板块执行「单板块任务划分流程」
 5. 所有任务文件完成后，列出文件清单，请用户审阅
@@ -81,10 +81,10 @@ git tag | sort
 
 ### 读取输入文件
 
-- `docs/specs/YYYY-MM-DD-<module>-spec.md`（原始 spec）
-- `docs/specs/YYYY-MM-DD-<module>-spec-core.md`（Core 阶段范围）
-- `docs/specs/YYYY-MM-DD-<module>-spec-update-1-<feature>.md`（Update 1，如在本次目标内）
-- `docs/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`（其余 Update，如在本次目标内）
+- `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`（原始 spec）
+- `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-core.md`（Core 阶段范围）
+- `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-1-<feature>.md`（Update 1，如在本次目标内）
+- `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`（其余 Update，如在本次目标内）
 
 ### 划分阶段
 
@@ -116,13 +116,13 @@ git tag | sort
 
 ### 写任务文件
 
-文件路径：`docs/tasks/YYYY-MM-DD-<module>-tasks.md`
+文件路径：`docs/my-powers-output/tasks/YYYY-MM-DD-<module>-tasks.md`
 
 ```markdown
 # <板块名> 任务文件
 
 > 生成日期：YYYY-MM-DD
-> 对应 spec：docs/specs/YYYY-MM-DD-<module>-spec.md
+> 对应 spec：docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md
 
 ## 阶段概览
 
@@ -204,9 +204,20 @@ Mock 的外部依赖：
 （同上格式，在「对应 spec 范围」处标注来自 spec-update-M-<feature>）
 ```
 
+### 自审
+
+写完任务文件后，逐条检查以下要点，发现问题直接修改，无需记录：
+
+- [ ] 每个阶段都有独立可演示的成果（非"运行程序查看结果"一类的模糊描述）
+- [ ] 任务阶段依赖顺序正确（被依赖的阶段排在前面）
+- [ ] 每个阶段的审查要点清单覆盖了该阶段所有预期成果
+- [ ] 演示步骤具体可执行
+
+所有条目通过后，再派发审查子智能体。
+
 ### 派发审查子智能体
 
-自检通过后，使用 `task-file-reviewer-prompt.md` 中的模板派发审查子智能体（标准模型），提供：
+使用 `task-file-reviewer-prompt.md` 中的模板派发审查子智能体（标准模型），提供：
 - 任务文件路径
 - 对应 spec 文件路径（原始 spec、spec-core、本次涉及的 spec-update-N-* 文件）
 - 本次目标阶段列表（来自第 0 步的确认结果）
@@ -220,8 +231,8 @@ Mock 的外部依赖：
 ```
 所有板块的任务文件已生成完毕：
 
-- docs/tasks/YYYY-MM-DD-<module-1>-tasks.md
-- docs/tasks/YYYY-MM-DD-<module-2>-tasks.md
+- docs/my-powers-output/tasks/YYYY-MM-DD-<module-1>-tasks.md
+- docs/my-powers-output/tasks/YYYY-MM-DD-<module-2>-tasks.md
 - ...
 
 请审阅每个任务文件，重点关注：

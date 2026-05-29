@@ -166,10 +166,10 @@ Must complete each phase in order before moving to the next.
 
 4. **Write bugfix record**
 
-   After the fix passes verification, write an additional record in `docs/reports/` with the same file prefix as the current stage:
+   After the fix passes verification, write an additional record in `docs/my-powers-output/reports/` with the same file prefix as the current stage:
 
    ```
-   docs/reports/YYYY-MM-DD-<module>-task-<N>-bugfix.md
+   docs/my-powers-output/reports/YYYY-MM-DD-<module>-task-<N>-bugfix.md
    ```
 
    If multiple bugs are fixed in the same stage, number sequentially: `-bugfix-1.md`, `-bugfix-2.md`.

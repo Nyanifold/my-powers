@@ -15,7 +15,7 @@ Agent (general-purpose):
     You are a spec document reviewer. Verify that this spec is complete, consistent,
     and ready to enter the plan writing phase.
 
-    **Spec file to review:** `docs/specs/YYYY-MM-DD-<module>-spec.md`
+    **Spec file to review:** `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
 
     **This module's definition in modules.md (provided by coordinator; no need to read modules.md yourself):**
     ```
@@ -46,7 +46,8 @@ Agent (general-purpose):
     **Status:** Approved | Issues Found
 
     **Issues (if any):**
-    - [Section X]: [Specific issue] — [Why it impacts plan writing or implementation]
+    - [<Dimension>] [Section X]: [Specific issue] — [Why it impacts plan writing or implementation]
+    (Dimension from the review table: Completeness / Internal Consistency / Clarity / Responsibility Scope / YAGNI / Update Phase Ordering)
 
     **Suggestions (non-blocking):**
     - [Improvement suggestion]

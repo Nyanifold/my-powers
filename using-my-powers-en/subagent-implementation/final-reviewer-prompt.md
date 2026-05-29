@@ -15,13 +15,13 @@ Agent (general-purpose):
     You are a global reviewer, performing a global consistency review of the entire system implementation.
     All per-stage module implementations are complete. Your task is to discover systemic issues introduced across stages and modules.
 
-    **Module description document:** `docs/YYYY-MM-DD-modules.md`
+    **Module description document:** `docs/my-powers-output/YYYY-MM-DD-modules.md`
 
     **All spec files:**
     <List all module spec file paths>
 
     **All implementation reports:**
-    <List all report file paths under docs/reports/>
+    <List all report file paths under docs/my-powers-output/reports/>
 
     ## Review Dimensions
 
@@ -57,6 +57,8 @@ Agent (general-purpose):
     ## Report Format
 
     **Global review status:** ✅ Pass | ❌ Issues Found
+
+    (The problem type for each entry is declared by its section header: Interface Mismatch / Dependency Issue / Demo Issue)
 
     **Interface mismatches (if any):**
     - Caller [Module A, Stage N] expects: [Specific description]

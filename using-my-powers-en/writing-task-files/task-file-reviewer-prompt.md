@@ -15,13 +15,13 @@ Agent (general-purpose):
     You are a task file reviewer. Verify that this task file is complete,
     stage divisions are reasonable, and it can enter the plan writing phase.
 
-    **Task file to review:** `docs/tasks/YYYY-MM-DD-<module>-tasks.md`
+    **Task file to review:** `docs/my-powers-output/tasks/YYYY-MM-DD-<module>-tasks.md`
 
     **Corresponding spec files (read to verify coverage):**
-    - Original spec: `docs/specs/YYYY-MM-DD-<module>-spec.md`
-    - Core phase scope: `docs/specs/YYYY-MM-DD-<module>-spec-core.md`
+    - Original spec: `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
+    - Core phase scope: `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-core.md`
     - Update phase files involved in this iteration (listed by coordinator, if applicable):
-      - `docs/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`
+      - `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`
 
     **Target phases for this iteration (provided by coordinator):** Core | Update N-* (target phase list: <phase list>)
 
@@ -50,7 +50,8 @@ Agent (general-purpose):
     **Status:** Approved | Issues Found
 
     **Issues (if any):**
-    - [Stage N / Section X]: [Specific issue] — [Why it impacts plan writing or implementation]
+    - [<Dimension>] [Stage N / Section X]: [Specific issue] — [Why it impacts plan writing or implementation]
+    (Dimension from the review table: Coverage Completeness / Scope Boundary / Demo Feasibility / Dependency Declaration / Increment Specificity / Stage Granularity / Completeness)
 
     **Suggestions (non-blocking):**
     - [Improvement suggestion]

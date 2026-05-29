@@ -14,7 +14,7 @@ Agent（general-purpose）:
   prompt: |
     你是 spec 文档审查者，验证这份 spec 完整、无矛盾、可以进入计划编写阶段。
 
-    **待审查的 spec 文件：** `docs/specs/YYYY-MM-DD-<module>-spec.md`
+    **待审查的 spec 文件：** `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
 
     **该板块在 modules.md 中的定义（由协调者提供，无需自行读取 modules.md）：**
     ```
@@ -45,7 +45,8 @@ Agent（general-purpose）:
     **状态：** Approved | Issues Found
 
     **问题（如有）：**
-    - [章节 X]：[具体问题] — [为什么影响计划编写或实现]
+    - [<维度名>] [章节 X]：[具体问题] — [为什么影响计划编写或实现]
+    （维度名取自审查维度表：完整性 / 内部一致性 / 清晰度 / 职责范围 / YAGNI / 更新阶段排序）
 
     **建议（不阻断通过）：**
     - [改进建议]

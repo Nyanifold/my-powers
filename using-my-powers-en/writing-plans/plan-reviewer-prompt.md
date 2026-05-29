@@ -17,9 +17,9 @@ Agent (general-purpose):
     **List of plan documents to review (provided by coordinator):**
     ```
     <List all plan file paths, e.g.:>
-    - docs/plans/YYYY-MM-DD-<module-1>-task-1-plan.md (corresponding spec: ..., tasks stage: Stage 1)
-    - docs/plans/YYYY-MM-DD-<module-1>-task-2-plan.md (corresponding spec: ..., tasks stage: Stage 2)
-    - docs/plans/YYYY-MM-DD-<module-2>-task-1-plan.md (corresponding spec: ..., tasks stage: Stage 1)
+    - docs/my-powers-output/plans/YYYY-MM-DD-<module-1>-task-1-plan.md (corresponding spec: ..., tasks stage: Stage 1)
+    - docs/my-powers-output/plans/YYYY-MM-DD-<module-1>-task-2-plan.md (corresponding spec: ..., tasks stage: Stage 2)
+    - docs/my-powers-output/plans/YYYY-MM-DD-<module-2>-task-1-plan.md (corresponding spec: ..., tasks stage: Stage 1)
     ```
 
     ## Review Dimensions
@@ -50,10 +50,11 @@ Agent (general-purpose):
 
     **Per-file results:**
 
-    #### `docs/plans/YYYY-MM-DD-<module>-task-<N>-plan.md`
+    #### `docs/my-powers-output/plans/YYYY-MM-DD-<module>-task-<N>-plan.md`
     **Status:** Approved | Issues Found
     **Issues (if any):**
-    - [Section X]: [Specific issue] - [Why it impacts implementation]
+    - [<Dimension>] [Section X]: [Specific issue] — [Why it impacts implementation]
+    (Dimension from the review table: Coverage Completeness / Test Sufficiency / Demo Feasibility / Executability / Scope Boundary)
     **Suggestions (non-blocking):**
     - [Improvement suggestion]
 

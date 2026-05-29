@@ -17,9 +17,9 @@ Agent（general-purpose）:
     **需要审查的计划文档列表（由协调者提供）：**
     ```
     <列出所有计划文件路径，例如：>
-    - docs/plans/YYYY-MM-DD-<module-1>-task-1-plan.md（对应 spec: ..., tasks 阶段: Stage 1）
-    - docs/plans/YYYY-MM-DD-<module-1>-task-2-plan.md（对应 spec: ..., tasks 阶段: Stage 2）
-    - docs/plans/YYYY-MM-DD-<module-2>-task-1-plan.md（对应 spec: ..., tasks 阶段: Stage 1）
+    - docs/my-powers-output/plans/YYYY-MM-DD-<module-1>-task-1-plan.md（对应 spec: ..., tasks 阶段: Stage 1）
+    - docs/my-powers-output/plans/YYYY-MM-DD-<module-1>-task-2-plan.md（对应 spec: ..., tasks 阶段: Stage 2）
+    - docs/my-powers-output/plans/YYYY-MM-DD-<module-2>-task-1-plan.md（对应 spec: ..., tasks 阶段: Stage 1）
     ```
 
     ## 审查维度
@@ -50,10 +50,11 @@ Agent（general-purpose）:
 
     **逐文件结果：**
 
-    #### `docs/plans/YYYY-MM-DD-<module>-task-<N>-plan.md`
+    #### `docs/my-powers-output/plans/YYYY-MM-DD-<module>-task-<N>-plan.md`
     **状态：** Approved | Issues Found
     **问题（如有）：**
-    - [章节 X]：[具体问题] - [为什么影响实现]
+    - [<维度名>] [章节 X]：[具体问题] — [为什么影响实现]
+    （维度名取自审查维度表：覆盖完整性 / 测试充分性 / 演示可行性 / 可执行性 / 范围边界）
     **建议（不阻断通过）：**
     - [改进建议]
 

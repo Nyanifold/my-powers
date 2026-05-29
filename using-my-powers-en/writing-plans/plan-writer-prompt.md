@@ -13,16 +13,16 @@ Agent (general-purpose):
     Your task is to write a plan document for module "<module-name>" Stage <N> (<stage-name>).
 
     **Input file paths (read these files for details):**
-    - Original spec: `docs/specs/YYYY-MM-DD-<module>-spec.md`
-    - Core phase scope: `docs/specs/YYYY-MM-DD-<module>-spec-core.md` (if this stage belongs to the Core scope)
-    - Update phase scope: `docs/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md` (if this stage belongs to an Update phase)
+    - Original spec: `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
+    - Core phase scope: `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-core.md` (if this stage belongs to the Core scope)
+    - Update phase scope: `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md` (if this stage belongs to an Update phase)
 
     **Below is the task description for this stage (extracted from tasks file; coordinator has already extracted it; no need to read the file yourself):**
     ```
     <Coordinator pastes the complete text of this stage from the tasks file here>
     ```
 
-    **Output file:** `docs/plans/YYYY-MM-DD-<module>-task-<N>-plan.md`
+    **Output file:** `docs/my-powers-output/plans/YYYY-MM-DD-<module>-task-<N>-plan.md`
 
     ## Plan Document Structure
 
@@ -30,7 +30,7 @@ Agent (general-purpose):
     # <module-name> Stage <N>: <stage-name> Plan
 
     > Generated: YYYY-MM-DD
-    > Corresponding spec: docs/specs/YYYY-MM-DD-<module>-spec.md
+    > Corresponding spec: docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md
     > Corresponding tasks stage: Stage <N>
 
     ## Goals and Scope
@@ -118,7 +118,7 @@ Agent (general-purpose):
     - [ ] Demo files exist and run correctly following the "Run demo" command
     - [ ] Mock interfaces match the mock behavior declared in the tasks file
     - [ ] No functionality beyond the tasks file scope has been introduced (no over-implementation)
-    - [ ] Implementation report written to `docs/reports/YYYY-MM-DD-<module>-task-<N>-report.md`
+    - [ ] Implementation report written to `docs/my-powers-output/reports/YYYY-MM-DD-<module>-task-<N>-report.md`
     ```
 
     ## Report on Completion

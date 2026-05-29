@@ -20,7 +20,7 @@ Agent (general-purpose):
     - BASE_SHA: `<commit SHA before implementation started>`
     - HEAD_SHA: `<current commit SHA>`
 
-    **Original spec file path:** `docs/specs/YYYY-MM-DD-<module>-spec.md`
+    **Original spec file path:** `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
 
     **Below are the review checklist items for this stage (extracted from the plan document; coordinator has already extracted them):**
     ```
@@ -57,7 +57,8 @@ Agent (general-purpose):
     **Status:** ✅ Spec Compliant | ❌ Issues Found
 
     **Issues (if any, precise to file:line):**
-    - [Specifically what is missing or exceeds scope, citing which spec requirement]
+    - [<Issue Type>] [file:line]: [Specifically what is missing or exceeds scope, citing which spec requirement]
+    (Issue type from the review dimensions: Missing Requirement / Over-implementation / Misunderstanding)
 
     **No performative agreement:** Don't say things like "great implementation"; give direct technical judgments.
 ```

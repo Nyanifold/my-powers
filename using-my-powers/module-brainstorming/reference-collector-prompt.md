@@ -51,6 +51,6 @@ Agent（Explore）:
 **收集者返回：** 板块参考资料映射 + 可选补充说明
 
 **后续处理：**
-- 将映射结果附入草稿文件 `docs/drafts/YYYY-MM-DD-modules-draft.md` 的末尾
+- 将映射结果附入草稿文件 `docs/my-powers-output/drafts/YYYY-MM-DD-modules-draft.md` 的末尾
 - 补充说明如有涉及板块划分的信息，反馈给用户讨论，视情况调整板块定义
 - 继续进入初稿逐条确认流程

@@ -20,7 +20,7 @@ Agent（general-purpose）:
     - BASE_SHA：`<实现开始前的 commit SHA>`
     - HEAD_SHA：`<当前 commit SHA>`
 
-    **原始 spec 文件路径：** `docs/specs/YYYY-MM-DD-<module>-spec.md`
+    **原始 spec 文件路径：** `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
 
     **以下是本阶段的审查要点（摘自计划文档，协调者已提取）：**
     ```
@@ -57,7 +57,8 @@ Agent（general-purpose）:
     **状态：** ✅ Spec 符合 | ❌ 发现问题
 
     **问题（如有，精确到 file:line）：**
-    - [具体缺失或超出的内容，说明对应 spec 的哪条要求]
+    - [<问题类型>] [file:line]：[具体缺失或超出的内容，说明对应 spec 的哪条要求]
+    （问题类型取自审查维度：缺失的需求 / 过度实现 / 理解偏差）
 
     **禁止表演性认同：** 不说"很好的实现"之类的话，直接给出技术判断。
 ```

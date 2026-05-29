@@ -13,16 +13,16 @@ Agent（general-purpose）:
     你的任务是为板块「<module-name>」的 Stage <N>（<阶段名称>）编写计划文档。
 
     **输入文件路径（读取这些文件获取详情）：**
-    - 原始 spec：`docs/specs/YYYY-MM-DD-<module>-spec.md`
-    - Core 阶段范围：`docs/specs/YYYY-MM-DD-<module>-spec-core.md`（若本阶段属于 Core 范围）
-    - Update 阶段范围：`docs/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`（若本阶段属于某 Update 阶段）
+    - 原始 spec：`docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
+    - Core 阶段范围：`docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-core.md`（若本阶段属于 Core 范围）
+    - Update 阶段范围：`docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`（若本阶段属于某 Update 阶段）
 
     **以下是该阶段的任务说明（摘自 tasks 文件，协调者已提取，不需要自行读取文件）：**
     ```
     <协调者从 tasks 文件中提取的该阶段完整文本，粘贴在此>
     ```
 
-    **输出文件：** `docs/plans/YYYY-MM-DD-<module>-task-<N>-plan.md`
+    **输出文件：** `docs/my-powers-output/plans/YYYY-MM-DD-<module>-task-<N>-plan.md`
 
     ## 计划文档结构
 
@@ -30,7 +30,7 @@ Agent（general-purpose）:
     # <板块名> Stage <N>：<阶段名称> 计划
 
     > 生成日期：YYYY-MM-DD
-    > 对应 spec：docs/specs/YYYY-MM-DD-<module>-spec.md
+    > 对应 spec：docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md
     > 对应 tasks 阶段：Stage <N>
 
     ## 目标与范围
@@ -118,7 +118,7 @@ Agent（general-purpose）:
     - [ ] 演示文件存在且能按「运行演示」中的命令正确运行
     - [ ] Mock 接口与 tasks 文件中声明的 Mock 行为一致
     - [ ] 没有引入 tasks 文件范围之外的功能（不过度实现）
-    - [ ] 实现报告已写入 `docs/reports/YYYY-MM-DD-<module>-task-<N>-report.md`
+    - [ ] 实现报告已写入 `docs/my-powers-output/reports/YYYY-MM-DD-<module>-task-<N>-report.md`
     ```
 
     ## 完成后上报

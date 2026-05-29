@@ -30,7 +30,7 @@ Complete each item in order:
 3. **Identify tight coupling zones** — Don't decompose tightly coupled areas; keep them as one module
 4. **Define leaf modules** — For each finest-granularity module, define responsibilities, boundaries, interfaces
 5. **Collect reference materials** — Check whether the working directory has project infrastructure; check whether the user mentioned any reference materials. If so, dispatch a subagent with the initial module breakdown to report the relevant files or directories per module. If not, record "no reference materials" and continue
-6. **Write module description document** — First write `docs/drafts/YYYY-MM-DD-modules-draft.md`, confirm each key point, then write the formal document to `docs/YYYY-MM-DD-modules.md`, commit to git
+6. **Write module description document** — First write `docs/my-powers-output/drafts/YYYY-MM-DD-modules-draft.md`, confirm each key point, then write the formal document to `docs/my-powers-output/YYYY-MM-DD-modules.md`, commit to git
 7. **Wait for user confirmation** — Call writing-module-specs once there are no objections
 
 ## Discussing System Decomposition
@@ -106,7 +106,7 @@ After the subagent completes, attach the reference material mapping to the draft
 
 ## Module Description Document Structure
 
-Save to `docs/YYYY-MM-DD-modules.md`:
+Save to `docs/my-powers-output/YYYY-MM-DD-modules.md`:
 
 ```markdown
 # System Module Description
@@ -181,6 +181,22 @@ Example:
 ## Open Questions
 
 <Undecided items from discussion, left for the spec phase to resolve>
+
+## Spec Writing Order
+
+<List leaf modules ordered from fewest to most dependencies:>
+
+1. <module-name> — no dependencies (or external libraries only)
+2. <module-name> — depends on: <Module A>
+3. <module-name> — depends on: <Module A>, <Module B>
+...
+
+<!-- Note:
+  Writing specs often reveals that module communication interfaces need adjustment.
+  Starting from the least-dependent modules means interface changes propagate forward only,
+  and don't invalidate specs that are already complete.
+  This order also serves as the execution order for the writing-module-specs phase.
+-->
 ```
 
 ## Diagram Usage Specification (modules.md scope)
@@ -199,7 +215,7 @@ After the user answers all questions, **before writing any formal document**, fo
 
 ### Step 1: Write the draft
 
-Write the discussion results to `docs/drafts/YYYY-MM-DD-modules-draft.md`, listing each key point with a `- [ ]` checkbox:
+Write the discussion results to `docs/my-powers-output/drafts/YYYY-MM-DD-modules-draft.md`, listing each key point with a `- [ ]` checkbox:
 
 ```markdown
 # System Module Description (Draft — Pending Confirmation)
@@ -226,13 +242,25 @@ If the user requests a change, update the draft and re-confirm that item before 
 
 Once all items are `- [x]`, ask the user:
 
-> "All key points have been confirmed. May I proceed to write the formal module description document `docs/YYYY-MM-DD-modules.md`?"
+> "All key points have been confirmed. May I proceed to write the formal module description document `docs/my-powers-output/YYYY-MM-DD-modules.md`?"
 
 Wait for explicit user approval before writing the formal document and committing to git.
 
+## Self-Review
+
+After writing the formal document, check the following items and fix issues inline — no need to record them:
+
+- [ ] Every leaf module includes all five fields: responsibilities, boundaries, external interfaces, module dependencies, existing implementation dependencies
+- [ ] Interface definitions describe only shape (inputs/outputs/error types) — no implementation details
+- [ ] No circular dependencies in the module dependency graph
+- [ ] Spec writing order is consistent with the dependency relationships
+- [ ] No undecided items missing from the Open Questions section
+
+Proceed to dispatching the review subagent only after all items pass.
+
 ## Dispatch Review Subagent
 
-After self-check passes, use the template in `modules-reviewer-prompt.md` to dispatch a review subagent (standard model), providing:
+Use the template in `modules-reviewer-prompt.md` to dispatch a review subagent (standard model), providing:
 - Module description document path
 
 Review results:
@@ -243,7 +271,7 @@ Review results:
 
 After writing the document, inform the user:
 
-> "The module description document has been written to `docs/YYYY-MM-DD-modules.md` and committed. Please review the module decomposition and interface definitions. Once confirmed, I will begin brainstorming specs for each module one by one. If adjustments are needed, please describe them directly."
+> "The module description document has been written to `docs/my-powers-output/YYYY-MM-DD-modules.md` and committed. Please review the module decomposition and interface definitions. Once confirmed, I will begin brainstorming specs for each module one by one. If adjustments are needed, please describe them directly."
 
 Wait for explicit user confirmation. For any modification requests, modify and re-confirm; do not skip.
 

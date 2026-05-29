@@ -15,13 +15,13 @@ Agent（general-purpose）:
     你是全局审查者，对整个系统实现进行全局一致性审查。
     所有板块的逐阶段实现已完成，你的任务是发现跨阶段、跨板块引入的系统性问题。
 
-    **板块说明文档：** `docs/YYYY-MM-DD-modules.md`
+    **板块说明文档：** `docs/my-powers-output/YYYY-MM-DD-modules.md`
 
     **所有 spec 文件：**
     <列出所有板块的 spec 文件路径>
 
     **所有实现报告：**
-    <列出所有 docs/reports/ 下的报告文件路径>
+    <列出所有 docs/my-powers-output/reports/ 下的报告文件路径>
 
     ## 审查维度
 
@@ -57,6 +57,8 @@ Agent（general-purpose）:
     ## 上报格式
 
     **全局审查状态：** ✅ 通过 | ❌ 发现问题
+
+    （每个问题条目的问题类型由其所在章节标题声明：接口不匹配 / 依赖关系问题 / 演示问题）
 
     **接口不匹配（如有）：**
     - 调用方 [板块A, Stage N] 期望：[具体描述]

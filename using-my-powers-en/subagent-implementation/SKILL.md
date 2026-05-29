@@ -33,7 +33,7 @@ Read all plan files at once, extract key information for each task, build a comp
 
 ```
 [Module Name] Stage N — <Stage Name>
-  Plan file: docs/plans/YYYY-MM-DD-<module>-task-N-plan.md
+  Plan file: docs/my-powers-output/plans/YYYY-MM-DD-<module>-task-N-plan.md
   Prerequisites: [list]
   Status: Pending
 ```
@@ -79,6 +79,16 @@ The implementer subagent must return one of four statuses:
 4. Plan itself has issues → Escalate to user for decision
 
 **Never** ignore BLOCKED or force retry with the same configuration.
+
+### Coordinator Self-Review (Before Dispatching Review)
+
+After receiving the implementer subagent's DONE report, before dispatching any review subagent, the coordinator checks:
+
+- [ ] Implementer subagent completed self-check (Step 5) and status is DONE
+- [ ] git diff scope matches the expected outcomes for this stage (no obvious omissions, no obvious out-of-scope implementation)
+- [ ] New file/function naming is consistent with spec conventions
+
+If obvious issues are found, send feedback to the implementer subagent for fixes before continuing.
 
 ### Review Phase 1: Spec Compliance Review
 
@@ -127,13 +137,13 @@ Review result:
 
 After both review phases pass, the implementer subagent (or coordinator) writes the implementation report:
 
-File path: `docs/reports/YYYY-MM-DD-<module>-task-<N>-report.md`
+File path: `docs/my-powers-output/reports/YYYY-MM-DD-<module>-task-<N>-report.md`
 
 ```markdown
 # <module-name> Stage <N> Implementation Report
 
 > Generated: YYYY-MM-DD
-> Corresponding plan: docs/plans/YYYY-MM-DD-<module>-task-<N>-plan.md
+> Corresponding plan: docs/my-powers-output/plans/YYYY-MM-DD-<module>-task-<N>-plan.md
 
 ## Change Summary
 
@@ -195,6 +205,16 @@ After writing the report, commit to git, then mark the task complete in TodoWrit
 
 ## Step 3: Global Final Review
 
+### Coordinator Self-Review (Before Global Review)
+
+After all task stages complete, before dispatching the final review subagent, the coordinator checks:
+
+- [ ] All task stages are marked complete (no BLOCKED/PARTIAL remaining)
+- [ ] Each module's interface implementation has no obvious divergence from modules.md definitions
+- [ ] All demo scripts/commands are ready and can actually run
+
+Fix any issues found before dispatching the global review subagent.
+
 After all task stages complete, dispatch a final code review subagent (most capable model) for a global review of the entire implementation:
 
 **Global review dimensions:**
@@ -228,8 +248,8 @@ You are an implementer subagent responsible for completing the implementation of
 Module "<module-name>" Stage <N>: <stage-name>
 
 **Input file paths (read these files for details):**
-- spec: `docs/specs/YYYY-MM-DD-<module>-spec.md`
-- plan: `docs/plans/YYYY-MM-DD-<module>-task-<N>-plan.md`
+- spec: `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
+- plan: `docs/my-powers-output/plans/YYYY-MM-DD-<module>-task-<N>-plan.md`
 
 **Below is the task description for this stage (extracted from tasks file; coordinator has already extracted it):**
 ```
@@ -250,7 +270,7 @@ Module "<module-name>" Stage <N>: <stage-name>
 - Skipping the "confirm test fails" step
 - "This is simple, no test needed"
 
-**When encountering bugs:** Follow the systematic debugging process: confirm reproduction, find root cause, fix, verify. After the fix passes, write a bugfix record in `docs/reports/`: `YYYY-MM-DD-<module>-task-<N>-bugfix.md` (if multiple bugs in the same stage, number sequentially: `-bugfix-1.md`, `-bugfix-2.md`).
+**When encountering bugs:** Follow the systematic debugging process: confirm reproduction, find root cause, fix, verify. After the fix passes, write a bugfix record in `docs/my-powers-output/reports/`: `YYYY-MM-DD-<module>-task-<N>-bugfix.md` (if multiple bugs in the same stage, number sequentially: `-bugfix-1.md`, `-bugfix-2.md`).
 
 **Verification before declaration:** Without running the test command, never say "tests pass"; without running the demo command, never say "demo works."
 

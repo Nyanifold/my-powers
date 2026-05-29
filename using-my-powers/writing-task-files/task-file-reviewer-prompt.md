@@ -14,13 +14,13 @@ Agent（general-purpose）:
   prompt: |
     你是任务文件审查者，验证这份任务文件完整、阶段划分合理，可以进入计划编写阶段。
 
-    **待审查的任务文件：** `docs/tasks/YYYY-MM-DD-<module>-tasks.md`
+    **待审查的任务文件：** `docs/my-powers-output/tasks/YYYY-MM-DD-<module>-tasks.md`
 
     **对应 spec 文件（读取以核对覆盖范围）：**
-    - 原始 spec：`docs/specs/YYYY-MM-DD-<module>-spec.md`
-    - Core 阶段范围：`docs/specs/YYYY-MM-DD-<module>-spec-core.md`
+    - 原始 spec：`docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
+    - Core 阶段范围：`docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-core.md`
     - 本次涉及的 Update 阶段文件（如适用，由协调者列出）：
-      - `docs/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`
+      - `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`
 
     **本次目标阶段（由协调者提供）：** Core | Update N-*（目标阶段列表：<阶段列表>）
 
@@ -49,7 +49,8 @@ Agent（general-purpose）:
     **状态：** Approved | Issues Found
 
     **问题（如有）：**
-    - [阶段 Stage N / 章节 X]：[具体问题] — [为什么影响计划编写或实现]
+    - [<维度名>] [阶段 Stage N / 章节 X]：[具体问题] — [为什么影响计划编写或实现]
+    （维度名取自审查维度表：覆盖完整性 / 范围边界 / 演示可行性 / 依赖声明 / 增量描述具体性 / 阶段粒度 / 完整性）
 
     **建议（不阻断通过）：**
     - [改进建议]

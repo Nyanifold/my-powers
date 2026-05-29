@@ -6,6 +6,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.1.2] - 2026-05-29
+
+### Breaking Changes
+
+- **Output directory renamed** — All generated files moved from `docs/` to `docs/my-powers-output/`. Affects every phase (modules, specs, tasks, plans, reports, drafts). Existing projects must manually migrate the `docs/` directory to `docs/my-powers-output/`.
+
+### Added
+
+- **Self-review checklists** — All design and implementation phases now include a self-review step for the main agent to run before dispatching a subagent reviewer. Each checklist targets common failure modes for that phase:
+  - `module-brainstorming`: five required leaf-module fields, no implementation detail in interfaces, no dependency cycles, spec writing order matches dependency order, no missing open questions
+  - `writing-module-specs`: iteration plan present, interfaces defined to field level, boundaries non-empty, no unexplained TBD/TODO, open-questions section contains only items the user explicitly deferred to a later version
+  - `writing-task-files`: each stage has a demonstrable artifact, dependency order correct, review checklist covers all expected outputs, demo steps are concrete and executable
+  - `writing-plans`: implementation steps are specific, test pseudocode covers boundary cases, demo matches tasks file, no missing handoffs between stages
+  - `subagent-implementation` (coordinator): pre-audit check of git diff scope and naming conventions; pre-global-audit check that all stages are complete, interfaces match `modules.md`, and demo commands are runnable
+- **"Spec writing order" section in `modules.md` template** — `module-brainstorming` now produces a ranked list of leaf modules ordered by ascending dependency count. Modules with no dependencies come first; each entry lists its dependencies explicitly. This list doubles as the execution order for `writing-module-specs`, ensuring interface changes only propagate forward and never invalidate already-completed specs.
+- **Tech stack must be fully resolved in spec** — `writing-module-specs` now enforces that every technology decision (algorithm, library, storage, interface fields, error handling) is finalized during spec discussion. Items the user has not explicitly deferred to a future version may not appear as TBD in the spec. The discussion template gained a dedicated "Technology Choices & Algorithms" block. The open-questions section is restricted to items the user explicitly labeled "future version work."
+
+---
+
 ## [0.1.1] - 2026-05-28
 
 ### Added

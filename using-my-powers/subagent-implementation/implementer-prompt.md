@@ -24,8 +24,8 @@ Agent（general-purpose）:
     **当前 git 分支：** `<branch-name>`
 
     **输入文件路径（读取这些文件获取详情）：**
-    - spec：`docs/specs/YYYY-MM-DD-<module>-spec.md`
-    - 计划：`docs/plans/YYYY-MM-DD-<module>-task-<N>-plan.md`
+    - spec：`docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
+    - 计划：`docs/my-powers-output/plans/YYYY-MM-DD-<module>-task-<N>-plan.md`
 
     **以下是本阶段的任务说明（摘自 tasks 文件，协调者已提取）：**
     ```
@@ -76,7 +76,7 @@ Agent（general-purpose）:
     ## 遇到 bug 时
 
     遵循系统化调试流程：先确认复现、再找根因、再修复、再验证。
-    修复通过后在 `docs/reports/` 写 bugfix 记录：
+    修复通过后在 `docs/my-powers-output/reports/` 写 bugfix 记录：
     `YYYY-MM-DD-<module>-task-<N>-bugfix.md`
     （同一 stage 多个 bug 则加序号：`-bugfix-1.md`、`-bugfix-2.md`）
 

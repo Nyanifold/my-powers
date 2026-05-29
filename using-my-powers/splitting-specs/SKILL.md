@@ -13,10 +13,10 @@ description: "所有板块 spec 用户确认后使用。并行唤起子智能体
 
 ### 第 1 步：准备任务列表
 
-读取 `docs/YYYY-MM-DD-modules.md`，提取所有叶子板块列表（排除标注为 leave it TODO 的板块）。
+读取 `docs/my-powers-output/YYYY-MM-DD-modules.md`，提取所有叶子板块列表（排除标注为 leave it TODO 的板块）。
 
 对每个板块，确认对应的原始 spec 文件存在：
-`docs/specs/YYYY-MM-DD-<module>-spec.md`
+`docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
 
 读取每个 spec 的「迭代计划」章节，记录各板块的阶段结构：
 - Core 阶段（必有）
@@ -70,7 +70,7 @@ description: "所有板块 spec 用户确认后使用。并行唤起子智能体
 你的任务是为板块「<module-name>」生成各迭代阶段的差异文件，从原始 spec 中提取并区分各阶段的内容范围。
 
 **输入文件：**
-- 原始 spec：`docs/specs/YYYY-MM-DD-<module>-spec.md`
+- 原始 spec：`docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
 
 **该板块的迭代阶段：**
 - Core：<最小可运行集名称>
@@ -78,9 +78,9 @@ description: "所有板块 spec 用户确认后使用。并行唤起子智能体
 - Update N：<feature-name>（如有）
 
 **输出文件：**
-- `docs/specs/YYYY-MM-DD-<module>-spec-core.md`
-- `docs/specs/YYYY-MM-DD-<module>-spec-update-1-<feature>.md`（如有 Update 1）
-- `docs/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`（如有更多 Update）
+- `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-core.md`
+- `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-1-<feature>.md`（如有 Update 1）
+- `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`（如有更多 Update）
 
 **原始 spec 保持不变，不要修改它。**
 
@@ -91,7 +91,7 @@ description: "所有板块 spec 用户确认后使用。并行唤起子智能体
 ```markdown
 # <板块名> Core Spec
 
-> 本文件是 `docs/specs/YYYY-MM-DD-<module>-spec.md` 的 Core 阶段范围说明。
+> 本文件是 `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md` 的 Core 阶段范围说明。
 > 接口的完整定义以原始 spec 为准，本文件仅说明 Core 阶段实现哪些部分。
 
 ## Core 实现范围

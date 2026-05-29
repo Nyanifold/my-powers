@@ -14,7 +14,7 @@ Agent（general-purpose）:
     从原始 spec 的「迭代计划」章节提取并区分各阶段的内容范围。
 
     **输入文件：**
-    - 原始 spec：`docs/specs/YYYY-MM-DD-<module>-spec.md`
+    - 原始 spec：`docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
 
     **该板块在 modules.md 中的定义（由协调者提供，无需读取 modules.md）：**
     ```
@@ -27,9 +27,9 @@ Agent（general-purpose）:
     - Update N：<feature-name>（如有更多）
 
     **输出文件（原始 spec 保持不变，不要修改它）：**
-    - `docs/specs/YYYY-MM-DD-<module>-spec-core.md`
-    - `docs/specs/YYYY-MM-DD-<module>-spec-update-1-<feature>.md`（如有 Update 1）
-    - `docs/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`（如有更多 Update）
+    - `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-core.md`
+    - `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-1-<feature>.md`（如有 Update 1）
+    - `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`（如有更多 Update）
 
     ## 生成 spec-core.md
 
@@ -38,7 +38,7 @@ Agent（general-purpose）:
     ```markdown
     # <板块名> Core Spec
 
-    > 本文件是 `docs/specs/YYYY-MM-DD-<module>-spec.md` 的 Core 阶段范围说明。
+    > 本文件是 `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md` 的 Core 阶段范围说明。
     > 接口的完整定义以原始 spec 为准，本文件仅说明 Core 阶段实现哪些部分。
 
     ## Core 实现范围
@@ -63,7 +63,7 @@ Agent（general-purpose）:
     ## 生成 spec-update-N-<feature>.md
 
     为每个 Update 阶段生成一个文件，描述该阶段在前序阶段基础上增加的内容。
-    文件名：`docs/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`
+    文件名：`docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`
     （N 为阶段序号，feature 为迭代计划中该阶段的名称，转为 kebab-case）
 
     每个文件的结构如下：

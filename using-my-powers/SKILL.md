@@ -38,7 +38,7 @@ finishing-a-module          ← 验证、收尾、合并或 PR
 所有中间文件均带日期前缀 `YYYY-MM-DD-`。
 
 ```
-docs/
+docs/my-powers-output/
 ├── YYYY-MM-DD-modules.md                             # 板块说明文档
 ├── specs/
 │   ├── YYYY-MM-DD-<module>-spec.md                       # 原始 spec（主智能体）

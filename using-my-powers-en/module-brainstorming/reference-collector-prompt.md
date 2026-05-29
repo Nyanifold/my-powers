@@ -52,6 +52,6 @@ Agent(Explore):
 **Collector returns:** Module reference material mapping + optional additional notes
 
 **Follow-up:**
-- Append the mapping to the draft file `docs/drafts/YYYY-MM-DD-modules-draft.md`
+- Append the mapping to the draft file `docs/my-powers-output/drafts/YYYY-MM-DD-modules-draft.md`
 - If additional notes touch on module decomposition, share with the user for discussion and adjust module definitions if needed
 - Continue into the draft point-by-point confirmation flow

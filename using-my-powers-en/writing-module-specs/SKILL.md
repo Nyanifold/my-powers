@@ -13,6 +13,8 @@ Brainstorm each leaf module in sequence, writing complete specification document
 
 <HARD-GATE>
 Do not call splitting-specs until the user confirms all specs. Each module's spec must include an "Iteration Plan" section.
+
+The spec must resolve all technology choices and specific algorithms — no "TBD" left behind. The only exception: items the user explicitly says "this is work for a future version" during the discussion. Once the user confirms the spec, they are no longer involved in these decisions.
 </HARD-GATE>
 
 ## Anti-Pattern: "This Module Is Simple, I Can Skip the Draft Confirmation"
@@ -23,7 +25,7 @@ Every module goes through this process. Skipping the draft confirmation just def
 
 ## Processing Order
 
-1. Read `docs/YYYY-MM-DD-modules.md`, extract all leaf module list
+1. Read `docs/my-powers-output/YYYY-MM-DD-modules.md`, extract all leaf module list
 2. Order leaf modules by dependency (depended-on modules first)
 3. Execute the "Single Module Brainstorming Process" serially for each module
 4. After all modules complete, list all spec files for user review
@@ -67,6 +69,13 @@ modules.md focuses on boundaries and interfaces, but sometimes lightly mentions 
   - How does this module handle errors returned by dependent modules?
   - Is there state that needs cross-module synchronization?
 
+- **Technology choices and algorithms (must all be resolved in this discussion)**
+  - Which algorithm for core functionality? (e.g., inverted index vs. vector search; priority queue vs. timing wheel)
+  - Which library or framework?
+  - Storage approach? (specific choice of relational / document / KV)
+  - Any other choices that affect how the module is implemented?
+  - **Rule: any choice the user has not explicitly deferred to "a future version" must be fully decided here — nothing left open.**
+
 - **Iteration plan**
   - Which features form the minimal set for system operation (Core)?
   - Are there natural feature groupings suited for delivery as separate update phases?
@@ -85,7 +94,7 @@ Present in segments; confirm each before continuing:
 
 After presenting all design proposals, **before writing the formal spec file**, follow these steps:
 
-1. Write the discussion conclusions to `docs/drafts/YYYY-MM-DD-<module>-spec-draft.md`, listing each key point with a `- [ ]` checkbox:
+1. Write the discussion conclusions to `docs/my-powers-output/drafts/YYYY-MM-DD-<module>-spec-draft.md`, listing each key point with a `- [ ]` checkbox:
 
 ```markdown
 ## Key Points Checklist
@@ -109,13 +118,13 @@ After presenting all design proposals, **before writing the formal spec file**, 
 
 ### Step 5: Write the Spec File
 
-File path: `docs/specs/YYYY-MM-DD-<module>-spec.md`
+File path: `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
 
 ```markdown
 # <module-name> Spec
 
 > Generated: YYYY-MM-DD
-> Parent system module description: docs/YYYY-MM-DD-modules.md
+> Parent system module description: docs/my-powers-output/YYYY-MM-DD-modules.md
 
 ## Overview
 
@@ -207,7 +216,7 @@ File path: `docs/specs/YYYY-MM-DD-<module>-spec.md`
 
 ## Open Questions (TODO)
 
-<Undecided items from discussion, marked TODO, left for later resolution>
+<Only items the user explicitly said "this is work for a future version" during discussion. Technology choices, algorithm selections, interface fields, error handling approaches, and any other decision needed for implementation must NOT appear here — these must be fully resolved in the spec.>
 ```
 
 ## Diagram Usage Specification (spec scope)
@@ -222,7 +231,21 @@ File path: `docs/specs/YYYY-MM-DD-<module>-spec.md`
 
 **Diagrams NOT placed in spec:** Sequence diagrams (cross-module interaction), component diagrams, deployment diagrams — these belong in modules.md.
 
-### Step 6: Dispatch Review Subagent
+### Step 6: Self-Review
+
+After writing the spec file, check the following items and fix issues inline — no need to record them:
+
+- [ ] Iteration Plan section exists and Core scope is explicit (no "TBD" placeholders)
+- [ ] Each functional requirement covers both happy path and error path
+- [ ] Interface definitions are field-level (field name/type/required), not just protocol names
+- [ ] Boundaries (out of scope) section is non-empty
+- [ ] No dependency ordering issues across Update phases
+- [ ] No unexplained TBD/TODO placeholders
+- [ ] Open Questions section contains no technology choices or algorithm decisions (only items the user explicitly deferred to a future version)
+
+Proceed to dispatching the review subagent only after all items pass.
+
+### Step 7: Dispatch Review Subagent
 
 Use the template in `spec-reviewer-prompt.md` to dispatch a review subagent (standard model), providing:
 - Spec file path
@@ -239,8 +262,8 @@ List all generated spec files:
 ```
 All module specs have been generated:
 
-- docs/specs/YYYY-MM-DD-<module-1>-spec.md
-- docs/specs/YYYY-MM-DD-<module-2>-spec.md
+- docs/my-powers-output/specs/YYYY-MM-DD-<module-1>-spec.md
+- docs/my-powers-output/specs/YYYY-MM-DD-<module-2>-spec.md
 - ...
 
 Please review each one. For each spec, you may:
@@ -269,3 +292,4 @@ After all confirmed: invoke the splitting-specs sub-skill — read `splitting-sp
 - Skip the draft confirmation flow and write the formal spec directly
 - Start writing the formal spec without user approval even after all key points are confirmed
 - Treat internal implementation hints in modules.md as settled conclusions and skip the corresponding discussion
+- Use "TBD" to defer a technology choice or algorithm — unless the user explicitly said "future version", the spec must make the choice; nothing left open
