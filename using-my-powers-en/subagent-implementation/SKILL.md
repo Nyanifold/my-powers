@@ -44,6 +44,8 @@ Build execution order by dependency: stages with no dependencies execute first; 
 
 ### Dispatch Implementer Subagent
 
+**Prompt template:** Read `using-my-powers-en/subagent-implementation/implementer-prompt.md` and use it as the skeleton to construct the subagent prompt, embedding the full text of the "Implementer Subagent Responsibilities" section from this skill.
+
 **Precise context the implementer subagent receives (constructed by coordinator; subagent does not search on its own):**
 - Module name, stage number, stage name
 - Corresponding spec file path (provided by coordinator; subagent reads the content itself)
@@ -100,6 +102,8 @@ BASE_SHA=$(git rev-parse HEAD~1)  # Or the commit before this task started
 HEAD_SHA=$(git rev-parse HEAD)
 ```
 
+**Prompt template:** Read `using-my-powers-en/subagent-implementation/spec-compliance-reviewer-prompt.md` and use it to construct the prompt.
+
 Dispatch Spec Compliance Review subagent (standard model), providing:
 - Original spec file path
 - The "Review Checklist" from the tasks file for this stage
@@ -118,6 +122,8 @@ Review result:
 
 ### Review Phase 2: Code Quality Review
 
+**Prompt template:** Read `using-my-powers-en/subagent-implementation/code-quality-reviewer-prompt.md` and use it to construct the prompt.
+
 Dispatch Code Quality Review subagent (most capable model), providing:
 - Same `BASE_SHA` and `HEAD_SHA`
 - Module's tech stack (from spec)
@@ -135,7 +141,7 @@ Review result:
 
 ### Write Implementation Report
 
-After both review phases pass, the implementer subagent (or coordinator) writes the implementation report:
+After both review phases pass, **the implementer subagent** writes the implementation report. This is the implementer's responsibility; the coordinator does not write it on their behalf.
 
 File path: `docs/my-powers-output/reports/YYYY-MM-DD-<module>-task-<N>-report.md`
 
@@ -210,10 +216,14 @@ After writing the report, commit to git, then mark the task complete in TodoWrit
 After all task stages complete, before dispatching the final review subagent, the coordinator checks:
 
 - [ ] All task stages are marked complete (no BLOCKED/PARTIAL remaining)
+- [ ] Each completed stage has a corresponding implementation report (file exists under `docs/my-powers-output/reports/`)
+- [ ] Each implementation report's content is consistent with the actual code changes (interface examples, file paths, expected output have no obvious divergence)
 - [ ] Each module's interface implementation has no obvious divergence from modules.md definitions
 - [ ] All demo scripts/commands are ready and can actually run
 
 Fix any issues found before dispatching the global review subagent.
+
+**Prompt template:** Read `using-my-powers-en/subagent-implementation/final-reviewer-prompt.md` and use it to construct the prompt.
 
 After all task stages complete, dispatch a final code review subagent (most capable model) for a global review of the entire implementation:
 
@@ -222,6 +232,7 @@ After all task stages complete, dispatch a final code review subagent (most capa
 - Do inter-module dependency relationships conform to the modules file conventions?
 - Are there consistency issues introduced across stages?
 - Can all demos run?
+- Does each completed stage have a corresponding implementation report? Are the interface examples, file paths, and expected output in the report consistent with the actual implementation?
 
 After review passes, invoke the finishing-a-module sub-skill — read `finishing-a-module/SKILL.md`
 

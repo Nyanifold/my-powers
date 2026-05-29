@@ -17,6 +17,12 @@ Agent（general-purpose）:
     - Core 阶段范围：`docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-core.md`（若本阶段属于 Core 范围）
     - Update 阶段范围：`docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`（若本阶段属于某 Update 阶段）
 
+    **该板块的参考资料（来自 modules.md，如有）：**
+    - `<路径>` — <说明>
+    （若无，此项留空）
+
+    > 参考资料是实现时需要对照的现有文件（如现有代码、接口定义、配置文件、文档等）。编写计划时，应读取这些文件，理解现有结构后再设计实现步骤。
+
     **以下是该阶段的任务说明（摘自 tasks 文件，协调者已提取，不需要自行读取文件）：**
     ```
     <协调者从 tasks 文件中提取的该阶段完整文本，粘贴在此>

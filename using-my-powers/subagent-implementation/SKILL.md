@@ -44,6 +44,8 @@ BRANCH=$(git branch --show-current)
 
 ### 派发实现子智能体
 
+**prompt 模板：** 读取 `using-my-powers/subagent-implementation/implementer-prompt.md`，以该模板为骨架构造子智能体 prompt，并将本技能「实现子智能体职责」章节的完整文本嵌入其中。
+
 **实现子智能体获得的精确上下文（协调者构造，不让子智能体自行搜索）：**
 - 板块名称、阶段编号、阶段名称
 - 对应 spec 文件路径（协调者提供，子智能体自行读取内容）
@@ -100,6 +102,8 @@ BASE_SHA=$(git rev-parse HEAD~1)  # 或该任务开始前的 commit
 HEAD_SHA=$(git rev-parse HEAD)
 ```
 
+**prompt 模板：** 读取 `using-my-powers/subagent-implementation/spec-compliance-reviewer-prompt.md`，以该模板构造 prompt。
+
 派发 Spec 符合审查子智能体（标准模型），提供：
 - 原始 spec 文件路径
 - tasks 文件中该阶段的「审查要点」清单
@@ -118,6 +122,8 @@ HEAD_SHA=$(git rev-parse HEAD)
 
 ### 审查阶段二：代码质量审查
 
+**prompt 模板：** 读取 `using-my-powers/subagent-implementation/code-quality-reviewer-prompt.md`，以该模板构造 prompt。
+
 派发代码质量审查子智能体（最强模型），提供：
 - 同样的 `BASE_SHA` 和 `HEAD_SHA`
 - 板块的技术栈（来自 spec）
@@ -135,7 +141,7 @@ HEAD_SHA=$(git rev-parse HEAD)
 
 ### 写实现报告
 
-两阶段审查均通过后，实现子智能体（或协调者）写实现报告：
+两阶段审查均通过后，**由实现子智能体**写实现报告。报告由实现子智能体负责，协调者不代写。
 
 文件路径：`docs/my-powers-output/reports/YYYY-MM-DD-<module>-task-<N>-report.md`
 
@@ -210,10 +216,14 @@ HEAD_SHA=$(git rev-parse HEAD)
 所有任务阶段完成后，在派发最终审查子智能体前，协调者检查：
 
 - [ ] 所有任务阶段均已标记完成（无 BLOCKED/PARTIAL 遗留）
+- [ ] 每个已完成阶段均有对应的实现报告（`docs/my-powers-output/reports/` 下存在对应文件）
+- [ ] 每份实现报告内容与实际代码变更一致（接口示例、文件路径、预期输出无明显出入）
 - [ ] 各板块接口实现与 modules.md 中的定义无明显出入
 - [ ] 演示脚本/命令已全部就绪，可实际运行
 
 发现问题直接修复，再派发全局审查子智能体。
+
+**prompt 模板：** 读取 `using-my-powers/subagent-implementation/final-reviewer-prompt.md`，以该模板构造 prompt。
 
 所有任务阶段完成后，派发最终代码审查子智能体（最强模型），对整个实现进行全局审查：
 
@@ -222,6 +232,7 @@ HEAD_SHA=$(git rev-parse HEAD)
 - 板块间的依赖关系是否符合 modules 文件中的约定？
 - 是否有跨阶段引入的一致性问题？
 - 所有演示是否可运行？
+- 每个已完成阶段是否有对应实现报告？报告中的接口示例、文件路径、预期输出是否与实际实现一致？
 
 审查通过后，调用 finishing-a-module 子技能 — 读取 `finishing-a-module/SKILL.md` 技能文件
 

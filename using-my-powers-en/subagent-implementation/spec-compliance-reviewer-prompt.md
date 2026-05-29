@@ -46,6 +46,12 @@ Agent (general-purpose):
 
     **Verify by reading code, not by trusting reports.**
 
+    **Implementation report:**
+    - Does a corresponding implementation report exist under `docs/my-powers-output/reports/` for this stage?
+    - Do the interface usage examples in the report match the actual code (method signatures, parameters, return values)?
+    - Do the file paths in the report match the actual files?
+    - Is the "Expected output" in the report reproducible?
+
     ## Calibration Principles
 
     Only flag deviations that would cause real problems in later stages.
@@ -58,7 +64,7 @@ Agent (general-purpose):
 
     **Issues (if any, precise to file:line):**
     - [<Issue Type>] [file:line]: [Specifically what is missing or exceeds scope, citing which spec requirement]
-    (Issue type from the review dimensions: Missing Requirement / Over-implementation / Misunderstanding)
+    (Issue type from the review dimensions: Missing Requirement / Over-implementation / Misunderstanding / Implementation Report)
 
     **No performative agreement:** Don't say things like "great implementation"; give direct technical judgments.
 ```

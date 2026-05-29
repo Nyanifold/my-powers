@@ -44,6 +44,8 @@ Only modules in the **multi-phase** group proceed to subagent dispatch in the st
 - Generated files have different paths; no write conflicts exist
 - Subagents don't need to communicate with each other; fully independent
 
+**Prompt template:** Use the template in `spec-splitter-prompt.md` to construct the subagent prompt.
+
 **Precise context each subagent receives (explicitly packaged by coordinator; subagents do not search on their own):**
 - Full path to the original spec file
 - The module's definition paragraph from the module description document (responsibilities, boundaries, interfaces)

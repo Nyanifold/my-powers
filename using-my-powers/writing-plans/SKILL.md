@@ -41,10 +41,13 @@ description: "用户确认所有任务文件后使用。并行唤起子智能体
 - 子智能体只读取自己任务对应的 spec 和 tasks 章节，不交叉读取
 - 不同板块、不同阶段的计划文档完全独立
 
+**prompt 模板：** 使用 `plan-writer-prompt.md` 中的模板构造子智能体 prompt。
+
 **每个子智能体获得的精确上下文（协调者显式打包）：**
 - 板块名称、阶段编号
 - 对应 spec 文件路径（原始 spec + 该阶段对应的 spec-core 或 spec-update-N-<feature> 文件路径）
 - tasks 文件中对应阶段的完整文本（协调者提取后传入，子智能体不自行读取文件）
+- 该板块在 modules.md 中列出的参考资料路径（如有）
 - 输出计划文件的目标路径
 - 本文件「子智能体任务说明」章节的完整文本
 
@@ -65,6 +68,8 @@ description: "用户确认所有任务文件后使用。并行唤起子智能体
 所有条目通过后，再派发审查子智能体。
 
 ### 第 4 步：子智能体审查
+
+**prompt 模板：** 使用 `plan-reviewer-prompt.md` 中的模板构造审查子智能体 prompt。
 
 所有计划文档生成后，派发审查子智能体（最强模型），对照对应的 spec 和 tasks 逐一审查：
 - 计划是否覆盖了该阶段所有预期成果？
@@ -101,6 +106,12 @@ description: "用户确认所有任务文件后使用。并行唤起子智能体
 - `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
 - `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-core.md`（若本阶段属于 Core 范围）
 - `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md`（若本阶段属于某 Update 阶段）
+
+该板块的参考资料（来自 modules.md，如有）：
+- `<路径>` — <说明>
+（若无，此项留空）
+
+> 注意：参考资料是实现时需要对照的现有文件（如现有代码、接口定义、配置文件、文档等）。编写计划时，应读取这些文件，理解现有结构后再设计实现步骤。
 
 以下是该阶段的任务说明（摘自 tasks 文件）：
 

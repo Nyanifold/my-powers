@@ -17,6 +17,12 @@ Agent (general-purpose):
     - Core phase scope: `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-core.md` (if this stage belongs to the Core scope)
     - Update phase scope: `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md` (if this stage belongs to an Update phase)
 
+    **Reference materials for this module (from modules.md, if any):**
+    - `<path>` — <description>
+    (Leave blank if none)
+
+    > Reference materials are existing files to consult during implementation (e.g., existing code, interface definitions, config files, documentation). When writing the plan, read these files to understand the existing structure before designing implementation steps.
+
     **Below is the task description for this stage (extracted from tasks file; coordinator has already extracted it; no need to read the file yourself):**
     ```
     <Coordinator pastes the complete text of this stage from the tasks file here>

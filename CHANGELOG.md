@@ -6,6 +6,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.1.3] - 2026-05-29
+
+### Fixed
+
+- **Prompt template pointers missing** — Key dispatch steps in `splitting-specs`, `writing-plans`, and `subagent-implementation` were not referencing the prompt template files that already existed alongside them. Added an explicit "Prompt template:" line to each dispatch step naming the `.md` file to use. Coordinators previously had to infer which template applied to which step.
+
+### Added
+
+- **Reference materials passed to plan-writer subagents** — `writing-plans` now includes the reference material paths listed for each module in `modules.md` in the context package sent to plan-writer subagents. The subagent is instructed to read those files before designing implementation steps. Added to both `SKILL.md` and `plan-writer-prompt.md` (EN and ZH).
+
+### Changed
+
+- **Implementation report ownership clarified** — `subagent-implementation` now explicitly states that the implementer subagent (not the coordinator) writes the implementation report. The coordinator must not write the report on the subagent's behalf.
+- **Pre-final-review checklist expanded** — Coordinator's pre-audit check before dispatching the global review subagent now includes two additional items: (1) each completed stage has a corresponding implementation report under `docs/my-powers-output/reports/`; (2) each report's interface examples, file paths, and expected output are consistent with the actual code changes.
+- **`spec-compliance-reviewer-prompt.md` — "Implementation Report" dimension added** — Spec compliance review now checks whether a report exists for the stage, whether interface usage examples match the actual code, whether file paths are accurate, and whether expected output is reproducible. "Implementation Report" added as a fourth issue type alongside Missing Requirement / Over-implementation / Misunderstanding. Applied to both EN and ZH versions.
+- **Global review — report consistency dimension added** — The final global review subagent now checks whether each completed stage has a corresponding implementation report and whether the report's interface examples, file paths, and expected output are consistent with the actual implementation.
+
+---
+
 ## [0.1.2] - 2026-05-29
 
 ### Breaking Changes

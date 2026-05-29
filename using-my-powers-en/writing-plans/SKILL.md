@@ -41,10 +41,13 @@ Count total tasks, declare: "N tasks total; will dispatch subagents in parallel 
 - Subagents only read the spec and tasks sections corresponding to their own task; no cross-reading
 - Plan documents for different modules and stages are completely independent
 
+**Prompt template:** Use the template in `plan-writer-prompt.md` to construct the subagent prompt.
+
 **Precise context each subagent receives (explicitly packaged by coordinator):**
 - Module name, stage number
 - Corresponding spec file paths (original spec + the spec-core or spec-update-N-<feature> file for this stage)
 - Complete text of the corresponding stage from the tasks file (extracted and passed in by coordinator; subagent does not read files itself)
+- Reference material paths listed for this module in modules.md (if any)
 - Target path for the output plan file
 - Complete text of the "Subagent Task Description" section in this file
 
@@ -65,6 +68,8 @@ After all plan documents are generated, check each one against the following ite
 Proceed to dispatching the review subagent only after all items pass.
 
 ### Step 4: Subagent Review
+
+**Prompt template:** Use the template in `plan-reviewer-prompt.md` to construct the review subagent prompt.
 
 After all plan documents are generated, dispatch a review subagent (most capable model) to review each against the corresponding spec and tasks:
 - Does the plan cover all expected deliverables for the stage?
@@ -101,6 +106,12 @@ Corresponding spec file paths:
 - `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec.md`
 - `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-core.md` (if this stage belongs to the Core scope)
 - `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-update-N-<feature>.md` (if this stage belongs to an Update phase)
+
+Reference materials for this module (from modules.md, if any):
+- `<path>` — <description>
+(Leave blank if none)
+
+> Reference materials are existing files to consult during implementation (e.g., existing code, interface definitions, config files, documentation). When writing the plan, read these files to understand the existing structure before designing implementation steps.
 
 Below is the task description for this stage (extracted from tasks file):
 
