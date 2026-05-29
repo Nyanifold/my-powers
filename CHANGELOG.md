@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Changed
 
 - **Draft confirmation — expanded point presentation** — When confirming each key point with the user one at a time, the agent now fully expands the content of that point and explains the rationale behind the decision (why this option was chosen over the alternatives discussed). Applies to `module-brainstorming` (Step 2) and `writing-module-specs` (Step 4, point 2), both EN and ZH.
+- **`splitting-specs` — Core-only fast path** — Modules whose iteration plan contains only a Core phase (no Update phases) now skip the splitting subagent entirely. The original spec is copied directly as `spec-core.md`, committed to git, and the coordinator explicitly declares this for each such module. Only multi-phase modules proceed through the splitter and checker subagents. Added two corresponding Red Flags: do not dispatch a subagent for a Core-only module; do not omit the explicit declaration when copying.
 
 ### Added
 

@@ -22,7 +22,22 @@ Read the "Iteration Plan" section of each spec and record each module's phase st
 - Core phase (always present)
 - Update 1–N phases (zero or more)
 
-### Step 2: Dispatch Subagents in Parallel
+Classify every module into one of two groups:
+- **Core-only** — iteration plan has no Update phases
+- **Multi-phase** — iteration plan has one or more Update phases
+
+### Step 2: Handle Core-only Modules First
+
+For each Core-only module, **skip the subagent entirely**. Instead:
+
+1. Copy the original spec file to `docs/my-powers-output/specs/YYYY-MM-DD-<module>-spec-core.md` (the content is identical — spec-core IS the full spec when there are no Update phases).
+2. Commit the copied file to git.
+3. **Explicitly declare** for each such module:
+   > "`<module-name>` has no Update phases — original spec copied directly as spec-core.md; no splitting subagent dispatched."
+
+Only modules in the **multi-phase** group proceed to subagent dispatch in the steps below.
+
+### Step 3: Dispatch Subagents in Parallel (multi-phase modules only)
 
 **Parallel conflict avoidance rules:**
 - Each subagent only operates on its own module's files; no reading or writing other modules' files
@@ -40,9 +55,9 @@ Read the "Iteration Plan" section of each spec and record each module's phase st
 - Splitting is a judgment task (requires understanding spec intent); use standard model
 - Do not use low-cost models (prone to misclassifying features)
 
-### Step 3: Dispatch Checker Subagents in Parallel
+### Step 4: Dispatch Checker Subagents in Parallel (multi-phase modules only)
 
-After all splitter subagents complete, dispatch one checker subagent per module in parallel, using the template in `spec-split-checker-prompt.md`.
+After all splitter subagents complete, dispatch one checker subagent per multi-phase module in parallel, using the template in `spec-split-checker-prompt.md`. Core-only modules do not need a checker (they were copied verbatim).
 
 **Context each checker subagent receives (packaged by coordinator):**
 - Original spec file path
@@ -53,7 +68,7 @@ Checker results:
 - **PASS** → Module passes
 - **FAIL** → Fix the corresponding splitter output, re-dispatch this module's checker, repeat until PASS
 
-### Step 4: Summarize Results
+### Step 5: Summarize Results
 
 After all modules' checker subagents pass:
 - List all generated files
@@ -162,3 +177,5 @@ After writing all files, commit to git, then report status:
 - Let one module's subagent read other modules' files
 - Omit any Update phase from the original spec's iteration plan
 - Proceed to writing-task-files when any checker subagent returned FAIL
+- Dispatch a splitting subagent for a Core-only module (copy directly instead)
+- Skip the explicit declaration when copying a Core-only module's spec
