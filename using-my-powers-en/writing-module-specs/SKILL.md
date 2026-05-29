@@ -107,8 +107,15 @@ After presenting all design proposals, **before writing the formal spec file**, 
 - [ ] **Iteration plan Update N**: <feature list> (if applicable)
 ```
 
-2. Ask the user to confirm one point at a time:
-   > "Please confirm the architecture overview: [content] — is this correct?"
+2. Ask the user to confirm one point at a time. For each point, **fully expand the content** of that item and **explain the rationale** behind the decision — why this design was chosen over the alternatives. Example format:
+
+   > "Please confirm the **architecture overview**:
+   >
+   > [Full description of internal components and how they collaborate]
+   >
+   > **Rationale:** [Why this structure — e.g., separating X from Y keeps the hot-path free of Y's I/O cost; using a single Z component avoids distributed state that would require a consensus protocol.]
+   >
+   > Is this correct?"
 
 3. After the user confirms, change `- [ ]` to `- [x]`; if changes are requested, update the draft and re-confirm.
 

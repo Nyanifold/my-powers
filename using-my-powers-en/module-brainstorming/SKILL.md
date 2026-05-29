@@ -232,8 +232,15 @@ One line per leaf module, summarizing responsibilities, boundaries, and interfac
 
 ### Step 2: Confirm one point at a time
 
-Ask the user to confirm one point per message:
-> "Please confirm the module tree structure: [content] — is this correct?"
+Ask the user to confirm one point per message. For each point, **fully expand the content** of that item and **explain the rationale** behind the decision — why this structure or boundary was chosen over the alternatives discussed. Example format:
+
+> "Please confirm the **module tree structure**:
+>
+> [Full module tree with all leaf nodes]
+>
+> **Rationale:** [Why the system is split this way — e.g., X and Y are separated because their change frequencies differ; A and B are kept together because their interfaces are tightly coupled and abstracting them adds no stability benefit.]
+>
+> Is this correct?"
 
 After the user confirms, change the corresponding `- [ ]` to `- [x]`.  
 If the user requests a change, update the draft and re-confirm that item before moving on.

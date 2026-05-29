@@ -12,6 +12,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - **Output directory renamed** — All generated files moved from `docs/` to `docs/my-powers-output/`. Affects every phase (modules, specs, tasks, plans, reports, drafts). Existing projects must manually migrate the `docs/` directory to `docs/my-powers-output/`.
 
+### Changed
+
+- **Draft confirmation — expanded point presentation** — When confirming each key point with the user one at a time, the agent now fully expands the content of that point and explains the rationale behind the decision (why this option was chosen over the alternatives discussed). Applies to `module-brainstorming` (Step 2) and `writing-module-specs` (Step 4, point 2), both EN and ZH.
+
 ### Added
 
 - **Self-review checklists** — All design and implementation phases now include a self-review step for the main agent to run before dispatching a subagent reviewer. Each checklist targets common failure modes for that phase:
